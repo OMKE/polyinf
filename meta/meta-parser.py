@@ -142,6 +142,3 @@ class MetaParser:
                 result = ""
         if result != None:
             return result
-
-
-parser = MetaParser()
