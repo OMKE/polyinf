@@ -1,0 +1,4424 @@
+[
+    {
+        "name": "ACT_OF_ORGANIZATION",
+        "columns": [
+            {
+                "name": "TIP_UST",
+                "type": "char(2)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "VU_IDENTIFIKATOR",
+                "type": "int",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "AO_REDNI_BROJ",
+                "type": "numeric(4,0)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "AO_DATUM_DOKUMENTA",
+                "type": "date",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "AO_VAZI_DO",
+                "type": "date",
+                "additional_attrs": []
+            },
+            {
+                "name": "OJ_IDENTIFIKATOR",
+                "type": "int",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            }
+        ],
+        "primary_keys": [
+            "TIP_UST",
+            "VU_IDENTIFIKATOR",
+            "AO_REDNI_BROJ"
+        ],
+        "references": [
+            {
+                "name": "INSTITUTION_STRUCTURE",
+                "reference_keys": [
+                    "TIP_UST,",
+                    "VU_IDENTIFIKATOR,",
+                    "AO_REDNI_BROJ"
+                ],
+                "constraint": "FK_INSTITUTION_STRUCTURE"
+            },
+            {
+                "name": "`SCHEMA`",
+                "reference_keys": [
+                    "TIP_UST,",
+                    "VU_IDENTIFIKATOR,",
+                    "AO_REDNI_BROJ"
+                ],
+                "constraint": "FK_SCHEMA_IN_ACT"
+            }
+        ]
+    },
+    {
+        "name": "ADITIONAL_DATA",
+        "columns": [
+            {
+                "name": "TIP_UST",
+                "type": "char(2)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "VU_IDENTIFIKATOR",
+                "type": "int",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "ZAP_REDNI_BROJ",
+                "type": "numeric(6,0)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "RCP_REDNI_BROJ",
+                "type": "numeric(2,0)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "ULO_OZNAKA",
+                "type": "char(2)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "PL_OZNAKA",
+                "type": "int",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "DOD_IDENT",
+                "type": "smallint",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "DOD_OPIS",
+                "type": "varchar(520)",
+                "additional_attrs": []
+            }
+        ],
+        "primary_keys": [
+            "TIP_UST",
+            "VU_IDENTIFIKATOR",
+            "ZAP_REDNI_BROJ",
+            "ULO_OZNAKA",
+            "PL_OZNAKA",
+            "RCP_REDNI_BROJ",
+            "DOD_IDENT"
+        ]
+    },
+    {
+        "name": "COMPETENCE",
+        "columns": [
+            {
+                "name": "PO_POLJE",
+                "type": "char(2)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "GRU_GRUPA",
+                "type": "char(2)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "OBL_OBLAST",
+                "type": "char(2)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "KOMP_KATEGORIJA",
+                "type": "char(2)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "KO_KOMPETENCIJA",
+                "type": "char(2)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "KO_NAZIV",
+                "type": "varchar(120)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "KO_OPIS",
+                "type": "varchar(512)",
+                "additional_attrs": []
+            }
+        ],
+        "primary_keys": [
+            "PO_POLJE",
+            "GRU_GRUPA",
+            "OBL_OBLAST",
+            "KOMP_KATEGORIJA",
+            "KO_KOMPETENCIJA"
+        ],
+        "references": [
+            {
+                "name": "COVERED_COMPETENCIES",
+                "reference_keys": [
+                    "PO_POLJE,",
+                    "GRU_GRUPA,",
+                    "OBL_OBLAST,",
+                    "KOMP_KATEGORIJA,",
+                    "KO_KOMPETENCIJA"
+                ],
+                "constraint": "FK_COVERED_COMPETENCIES2"
+            },
+            {
+                "name": "COVERES_COMPETENCES",
+                "reference_keys": [
+                    "PO_POLJE,",
+                    "GRU_GRUPA,",
+                    "OBL_OBLAST,",
+                    "KOMP_KATEGORIJA,",
+                    "KO_KOMPETENCIJA"
+                ],
+                "constraint": "FK_COVERES_COMPETENCES"
+            },
+            {
+                "name": "STRUCTURED_COMPETENCE",
+                "reference_keys": [
+                    "PO_POLJE,",
+                    "GRU_GRUPA,",
+                    "OBL_OBLAST,",
+                    "KOMP_KATEGORIJA,",
+                    "KO_KOMPETENCIJA"
+                ],
+                "constraint": "FK_STRUCTUR_STRUCTURE_COMPETE3"
+            },
+            {
+                "name": "STRUCTURED_COMPETENCE",
+                "reference_keys": [
+                    "PO_POLJE,",
+                    "GRU_GRUPA,",
+                    "OBL_OBLAST,",
+                    "KOMP_KATEGORIJA,",
+                    "KO_KOMPETENCIJA"
+                ],
+                "constraint": "FK_STRUCTURED_COMPETENCE2"
+            }
+        ]
+    },
+    {
+        "name": "COMPETENCE_CATEGORY",
+        "columns": [
+            {
+                "name": "PO_POLJE",
+                "type": "char(2)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "GRU_GRUPA",
+                "type": "char(2)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "OBL_OBLAST",
+                "type": "char(2)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "KOMP_KATEGORIJA",
+                "type": "char(2)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "KOMP_NAZIV",
+                "type": "varchar(120)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "KOMP_OPIS",
+                "type": "varchar(512)",
+                "additional_attrs": []
+            }
+        ],
+        "primary_keys": [
+            "PO_POLJE",
+            "GRU_GRUPA",
+            "OBL_OBLAST",
+            "KOMP_KATEGORIJA"
+        ],
+        "references": [
+            {
+                "name": "COMPETENCE",
+                "reference_keys": [
+                    "PO_POLJE,",
+                    "GRU_GRUPA,",
+                    "OBL_OBLAST,",
+                    "KOMP_KATEGORIJA"
+                ],
+                "constraint": "FK_COMPETEN_COMPETENC_COMPETE2"
+            },
+            {
+                "name": "STRUCTURED_CATEGORIES",
+                "reference_keys": [
+                    "PO_POLJE,",
+                    "GRU_GRUPA,",
+                    "OBL_OBLAST,",
+                    "KOMP_KATEGORIJA"
+                ],
+                "constraint": "FK_EMBEDDED_CATEGORY"
+            },
+            {
+                "name": "STRUCTURED_CATEGORIES",
+                "reference_keys": [
+                    "PO_POLJE,",
+                    "GRU_GRUPA,",
+                    "OBL_OBLAST,",
+                    "KOMP_KATEGORIJA"
+                ],
+                "constraint": "FK_STRUCTUR_STRUCTURE_COMPETE2"
+            },
+            {
+                "name": "STRUCTURED_CATEGORIES",
+                "reference_keys": [
+                    "PO_POLJE,",
+                    "GRU_GRUPA,",
+                    "OBL_OBLAST,",
+                    "KOMP_KATEGORIJA"
+                ],
+                "constraint": "FK_STRUCTURED_CATEGORIES2"
+            }
+        ]
+    },
+    {
+        "name": "COMPOSED_OF_UNITS",
+        "columns": [
+            {
+                "name": "TIP_UST",
+                "type": "char(2)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "VU_IDENTIFIKATOR",
+                "type": "int",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "OJ_IDENTIFIKATOR",
+                "type": "int",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "ORG_OJ_IDENTIFIKATOR",
+                "type": "int",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            }
+        ],
+        "primary_keys": [
+            "TIP_UST",
+            "VU_IDENTIFIKATOR",
+            "OJ_IDENTIFIKATOR",
+            "ORG_OJ_IDENTIFIKATOR"
+        ]
+    },
+    {
+        "name": "COMPOSITE_STATE",
+        "columns": [
+            {
+                "name": "DR_IDENTIFIKATOR",
+                "type": "char(3)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "STA_DR_IDENTIFIKATOR",
+                "type": "char(3)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            }
+        ],
+        "primary_keys": [
+            "DR_IDENTIFIKATOR",
+            "STA_DR_IDENTIFIKATOR"
+        ]
+    },
+    {
+        "name": "CONTACTS",
+        "columns": [
+            {
+                "name": "TIP_UST",
+                "type": "char(2)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "VU_IDENTIFIKATOR",
+                "type": "int",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "ZAP_REDNI_BROJ",
+                "type": "numeric(6,0)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "TKO_OZNAKA",
+                "type": "char(1)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "KP_REDNI_BROJ",
+                "type": "numeric(2,0)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "DR_IDENTIFIKATOR",
+                "type": "char(3)",
+                "additional_attrs": []
+            },
+            {
+                "name": "NM_IDENTIFIKATOR",
+                "type": "bigint",
+                "additional_attrs": []
+            },
+            {
+                "name": "KP_ADRESA",
+                "type": "varchar(80)",
+                "additional_attrs": []
+            },
+            {
+                "name": "KP_E_POSTA",
+                "type": "varchar(60)",
+                "additional_attrs": []
+            },
+            {
+                "name": "KP_WWW",
+                "type": "varchar(60)",
+                "additional_attrs": []
+            },
+            {
+                "name": "KP_KONTAKT_TELEFON",
+                "type": "varchar(20)",
+                "additional_attrs": []
+            }
+        ],
+        "primary_keys": [
+            "TIP_UST",
+            "VU_IDENTIFIKATOR",
+            "TKO_OZNAKA",
+            "ZAP_REDNI_BROJ",
+            "KP_REDNI_BROJ"
+        ]
+    },
+    {
+        "name": "CONTACT_TYPE",
+        "columns": [
+            {
+                "name": "TKO_OZNAKA",
+                "type": "char(1)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "TKO_NAZIV",
+                "type": "varchar(30)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            }
+        ],
+        "primary_keys": [
+            "TKO_OZNAKA"
+        ],
+        "references": [
+            {
+                "name": "CONTACTS",
+                "reference_keys": [
+                    "TKO_OZNAKA"
+                ],
+                "constraint": "FK_CONTACT_TYPE"
+            }
+        ]
+    },
+    {
+        "name": "CONTRACT_HISTORY",
+        "columns": [
+            {
+                "name": "TIP_UST",
+                "type": "char(2)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "EMP_VU_IDENTIFIKATOR",
+                "type": "int",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "ZAP_REDNI_BROJ",
+                "type": "numeric(6,0)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "VD_OZNAKA",
+                "type": "char(2)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "UG_GODINA",
+                "type": "numeric(4,0)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "UG_BROJ_UGOVORA",
+                "type": "int",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            }
+        ],
+        "primary_keys": [
+            "TIP_UST",
+            "EMP_VU_IDENTIFIKATOR",
+            "VD_OZNAKA",
+            "UG_GODINA",
+            "UG_BROJ_UGOVORA",
+            "ZAP_REDNI_BROJ"
+        ]
+    },
+    {
+        "name": "COURSE",
+        "columns": [
+            {
+                "name": "TIP_UST",
+                "type": "char(2)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "VU_IDENTIFIKATOR",
+                "type": "int",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "NP_PREDMET",
+                "type": "varchar(6)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "NP_VERZIJA",
+                "type": "numeric(2,0)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "NP_NAZIV_PREDMETA",
+                "type": "varchar(120)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "NP_IZBORNA",
+                "type": "bool",
+                "additional_attrs": [
+                    "not",
+                    "null",
+                    "default",
+                    "0"
+                ]
+            }
+        ],
+        "primary_keys": [
+            "TIP_UST",
+            "VU_IDENTIFIKATOR",
+            "NP_PREDMET",
+            "NP_VERZIJA"
+        ],
+        "references": [
+            {
+                "name": "COURSES_IN_BLOCK",
+                "reference_keys": [
+                    "TIP_UST,",
+                    "VU_IDENTIFIKATOR,",
+                    "NP_PREDMET,",
+                    "NP_VERZIJA"
+                ],
+                "constraint": "FK_COURSES_IN_BLOCK2"
+            },
+            {
+                "name": "EDUCATION_PLAN",
+                "reference_keys": [
+                    "TIP_UST,",
+                    "VU_IDENTIFIKATOR,",
+                    "NP_PREDMET,",
+                    "NP_VERZIJA"
+                ],
+                "constraint": "FK_EDUCATION_SCHRDULE"
+            },
+            {
+                "name": "ELECTIVE_COURSEC",
+                "reference_keys": [
+                    "TIP_UST,",
+                    "VU_IDENTIFIKATOR,",
+                    "NP_PREDMET,",
+                    "NP_VERZIJA"
+                ],
+                "constraint": "FK_ELECTIVE_COURSE"
+            },
+            {
+                "name": "ELECTIVE_COURSEC",
+                "reference_keys": [
+                    "TIP_UST,",
+                    "VU_IDENTIFIKATOR,",
+                    "NP_PREDMET,",
+                    "NP_VERZIJA"
+                ],
+                "constraint": "FK_ELECTIVE_POOL"
+            },
+            {
+                "name": "FOUND_FOR_TYPE",
+                "reference_keys": [
+                    "TIP_UST,",
+                    "VU_IDENTIFIKATOR,",
+                    "NP_PREDMET,",
+                    "NP_VERZIJA"
+                ],
+                "constraint": "FK_FUNDS"
+            },
+            {
+                "name": "OBBLIGATIONS",
+                "reference_keys": [
+                    "TIP_UST,",
+                    "VU_IDENTIFIKATOR,",
+                    "NP_PREDMET,",
+                    "NP_VERZIJA"
+                ],
+                "constraint": "FK_IN_OBLIGATION"
+            },
+            {
+                "name": "PASSED_EXMES",
+                "reference_keys": [
+                    "TIP_UST,",
+                    "VU_IDENTIFIKATOR,",
+                    "NP_PREDMET,",
+                    "NP_VERZIJA"
+                ],
+                "constraint": "FK_PASSED_BY"
+            }
+        ]
+    },
+    {
+        "name": "COURSES_IN_BLOCK",
+        "columns": [
+            {
+                "name": "TIP_UST",
+                "type": "char(2)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "CUR_VU_IDENTIFIKATOR",
+                "type": "int",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "TIPP_TIP",
+                "type": "char(1)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "SP_EVIDENCIONI_BROJ",
+                "type": "int",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "SP_VERZIJA",
+                "type": "numeric(2,0)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "ON_OZNAKA",
+                "type": "char(1)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "BLOKN_REDNI_BROJ",
+                "type": "numeric(2,0)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "NP_PREDMET",
+                "type": "varchar(6)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "NP_VERZIJA",
+                "type": "numeric(2,0)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            }
+        ],
+        "primary_keys": [
+            "TIP_UST",
+            "CUR_VU_IDENTIFIKATOR",
+            "TIPP_TIP",
+            "SP_EVIDENCIONI_BROJ",
+            "SP_VERZIJA",
+            "ON_OZNAKA",
+            "BLOKN_REDNI_BROJ",
+            "NP_PREDMET",
+            "NP_VERZIJA"
+        ]
+    },
+    {
+        "name": "COVERED_COMPETENCIES",
+        "columns": [
+            {
+                "name": "TIP_UST",
+                "type": "char(2)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "VU_IDENTIFIKATOR",
+                "type": "int",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "TIPP_TIP",
+                "type": "char(1)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "SP_EVIDENCIONI_BROJ",
+                "type": "int",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "SP_VERZIJA",
+                "type": "numeric(2,0)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "PO_POLJE",
+                "type": "char(2)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "GRU_GRUPA",
+                "type": "char(2)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "OBL_OBLAST",
+                "type": "char(2)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "KOMP_KATEGORIJA",
+                "type": "char(2)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "KO_KOMPETENCIJA",
+                "type": "char(2)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            }
+        ],
+        "primary_keys": [
+            "TIP_UST",
+            "VU_IDENTIFIKATOR",
+            "PO_POLJE",
+            "GRU_GRUPA",
+            "OBL_OBLAST",
+            "KOMP_KATEGORIJA",
+            "TIPP_TIP",
+            "SP_EVIDENCIONI_BROJ",
+            "SP_VERZIJA",
+            "KO_KOMPETENCIJA"
+        ]
+    },
+    {
+        "name": "COVERED_EDUCATION_SUBGROUPS",
+        "columns": [
+            {
+                "name": "TIP_UST",
+                "type": "char(2)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "VU_IDENTIFIKATOR",
+                "type": "int",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "TIPP_TIP",
+                "type": "char(1)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "SP_EVIDENCIONI_BROJ",
+                "type": "int",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "SP_VERZIJA",
+                "type": "numeric(2,0)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "PO_POLJE",
+                "type": "char(2)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "GRU_GRUPA",
+                "type": "char(2)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "OBL_OBLAST",
+                "type": "char(2)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            }
+        ],
+        "primary_keys": [
+            "TIP_UST",
+            "VU_IDENTIFIKATOR",
+            "PO_POLJE",
+            "GRU_GRUPA",
+            "OBL_OBLAST",
+            "TIPP_TIP",
+            "SP_EVIDENCIONI_BROJ",
+            "SP_VERZIJA"
+        ]
+    },
+    {
+        "name": "COVERES_COMPETENCES",
+        "columns": [
+            {
+                "name": "TIP_UST",
+                "type": "char(2)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "VU_IDENTIFIKATOR",
+                "type": "int",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "NP_PREDMET",
+                "type": "varchar(6)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "NP_VERZIJA",
+                "type": "numeric(2,0)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "VID_VID",
+                "type": "char(1)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "EPL_WEEK",
+                "type": "numeric(2,0)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "PO_POLJE",
+                "type": "char(2)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "GRU_GRUPA",
+                "type": "char(2)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "OBL_OBLAST",
+                "type": "char(2)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "KOMP_KATEGORIJA",
+                "type": "char(2)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "KO_KOMPETENCIJA",
+                "type": "char(2)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            }
+        ],
+        "primary_keys": [
+            "TIP_UST",
+            "PO_POLJE",
+            "GRU_GRUPA",
+            "OBL_OBLAST",
+            "KOMP_KATEGORIJA",
+            "VU_IDENTIFIKATOR",
+            "KO_KOMPETENCIJA",
+            "NP_PREDMET",
+            "NP_VERZIJA",
+            "VID_VID",
+            "EPL_WEEK"
+        ]
+    },
+    {
+        "name": "CURRICULUM_DEGREE",
+        "columns": [
+            {
+                "name": "STS_OZNAKA",
+                "type": "char(2)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "STS_NAZIV",
+                "type": "varchar(40)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            }
+        ],
+        "primary_keys": [
+            "STS_OZNAKA"
+        ],
+        "references": [
+            {
+                "name": "CURRICULUM_LEVEL",
+                "reference_keys": [
+                    "STS_OZNAKA"
+                ],
+                "constraint": "FK_WITH_LEVELS"
+            }
+        ]
+    },
+    {
+        "name": "CURRICULUM_LEVEL",
+        "columns": [
+            {
+                "name": "STS_OZNAKA",
+                "type": "char(2)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "NS_NIVO",
+                "type": "numeric(1,0)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "NA_NAZIV",
+                "type": "varchar(60)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "SN_OZNAKA",
+                "type": "char(2)",
+                "additional_attrs": []
+            }
+        ],
+        "primary_keys": [
+            "STS_OZNAKA",
+            "NS_NIVO"
+        ],
+        "references": [
+            {
+                "name": "REGISTERED_CURRICULUMS",
+                "reference_keys": [
+                    "STS_OZNAKA,",
+                    "NS_NIVO"
+                ],
+                "constraint": "FK_CURRICULUM_DEGREE_AND_LEVEL"
+            }
+        ]
+    },
+    {
+        "name": "CURRICULUM_STRUCTURE",
+        "columns": [
+            {
+                "name": "TIP_UST",
+                "type": "char(2)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "VU_IDENTIFIKATOR",
+                "type": "int",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "TIPP_TIP",
+                "type": "char(1)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "SP_EVIDENCIONI_BROJ",
+                "type": "int",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "SP_VERZIJA",
+                "type": "numeric(2,0)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "ON_OZNAKA",
+                "type": "char(1)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "BLOKN_REDNI_BROJ",
+                "type": "numeric(2,0)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "BLOKN_TRAJE",
+                "type": "numeric(2,0)",
+                "additional_attrs": [
+                    "not",
+                    "null",
+                    "default",
+                    "1"
+                ]
+            }
+        ],
+        "primary_keys": [
+            "TIP_UST",
+            "VU_IDENTIFIKATOR",
+            "TIPP_TIP",
+            "SP_EVIDENCIONI_BROJ",
+            "SP_VERZIJA",
+            "ON_OZNAKA",
+            "BLOKN_REDNI_BROJ"
+        ],
+        "references": [
+            {
+                "name": "COURSES_IN_BLOCK",
+                "reference_keys": [
+                    "TIP_UST,",
+                    "VU_IDENTIFIKATOR,",
+                    "TIPP_TIP,",
+                    "SP_EVIDENCIONI_BROJ,",
+                    "SP_VERZIJA,",
+                    "ON_OZNAKA,",
+                    "BLOKN_REDNI_BROJ"
+                ],
+                "constraint": "FK_COURSES_IN_BLOCK"
+            }
+        ]
+    },
+    {
+        "name": "CURRICULUM_TYPE",
+        "columns": [
+            {
+                "name": "TIPP_TIP",
+                "type": "char(1)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "TIPP_NAZIV",
+                "type": "varchar(40)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            }
+        ],
+        "primary_keys": [
+            "TIPP_TIP"
+        ],
+        "references": [
+            {
+                "name": "REGISTERED_CURRICULUMS",
+                "reference_keys": [
+                    "TIPP_TIP"
+                ],
+                "constraint": "FK_TYPED_CURRICULUMS"
+            }
+        ]
+    },
+    {
+        "name": "DOCCUMENTS_OF_EMPLOYMENT",
+        "columns": [
+            {
+                "name": "TIP_UST",
+                "type": "char(2)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "VU_IDENTIFIKATOR",
+                "type": "int",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "VD_OZNAKA",
+                "type": "char(2)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "UG_GODINA",
+                "type": "numeric(4,0)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "UG_BROJ_UGOVORA",
+                "type": "int",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "UG_DATIM",
+                "type": "date",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "UG_DATUM_VAZENJA",
+                "type": "date",
+                "additional_attrs": []
+            }
+        ],
+        "primary_keys": [
+            "TIP_UST",
+            "VU_IDENTIFIKATOR",
+            "VD_OZNAKA",
+            "UG_GODINA",
+            "UG_BROJ_UGOVORA"
+        ],
+        "references": [
+            {
+                "name": "CONTRACT_HISTORY",
+                "reference_keys": [
+                    "TIP_UST,",
+                    "VU_IDENTIFIKATOR,",
+                    "VD_OZNAKA,",
+                    "UG_GODINA,",
+                    "UG_BROJ_UGOVORA"
+                ],
+                "constraint": "FK_CONTRACT_HISTORY"
+            },
+            {
+                "name": "RESPONSIBLE_MANAGER",
+                "reference_keys": [
+                    "TIP_UST,",
+                    "VU_IDENTIFIKATOR,",
+                    "VD_OZNAKA,",
+                    "UG_GODINA,",
+                    "UG_BROJ_UGOVORA"
+                ],
+                "constraint": "FK_RESPONSIBLE_MANAGER2"
+            }
+        ]
+    },
+    {
+        "name": "DOCUMENT_INSTANCE",
+        "columns": [
+            {
+                "name": "TIP_UST",
+                "type": "char(2)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "VU_IDENTIFIKATOR",
+                "type": "int",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "TIPP_TIP",
+                "type": "char(1)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "SP_EVIDENCIONI_BROJ",
+                "type": "int",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "SP_VERZIJA",
+                "type": "numeric(2,0)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "DOC_ID",
+                "type": "numeric(3,0)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "DIN_SEGMENT_ID",
+                "type": "numeric(2,0)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "DIN_DESCRIPTION",
+                "type": "varchar(7000)",
+                "additional_attrs": []
+            }
+        ],
+        "primary_keys": [
+            "TIP_UST",
+            "VU_IDENTIFIKATOR",
+            "TIPP_TIP",
+            "DOC_ID",
+            "SP_EVIDENCIONI_BROJ",
+            "SP_VERZIJA",
+            "DIN_SEGMENT_ID"
+        ]
+    },
+    {
+        "name": "DOCUMENT_PART",
+        "columns": [
+            {
+                "name": "DOC_ID",
+                "type": "numeric(3,0)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "DOC_PARTH_NAME",
+                "type": "varchar(240)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "DOC_META_DESCRIPTION",
+                "type": "varchar(1024)",
+                "additional_attrs": []
+            }
+        ],
+        "primary_keys": [
+            "DOC_ID"
+        ],
+        "references": [
+            {
+                "name": "DOCUMENT_INSTANCE",
+                "reference_keys": [
+                    "DOC_ID"
+                ],
+                "constraint": "FK_IN_CURRICULUM_INSTANCE"
+            },
+            {
+                "name": "INTERNAL_STRUCTURE",
+                "reference_keys": [
+                    "DOC_ID"
+                ],
+                "constraint": "FK_EMBEDDED_PART"
+            },
+            {
+                "name": "INTERNAL_STRUCTURE",
+                "reference_keys": [
+                    "DOC_ID"
+                ],
+                "constraint": "FK_STRUCTURED_PART"
+            }
+        ]
+    },
+    {
+        "name": "DOCUMENT_TYPE",
+        "columns": [
+            {
+                "name": "VD_OZNAKA",
+                "type": "char(2)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "VD_NAZIV",
+                "type": "varchar(40)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            }
+        ],
+        "primary_keys": [
+            "VD_OZNAKA"
+        ],
+        "references": [
+            {
+                "name": "DOCCUMENTS_OF_EMPLOYMENT",
+                "reference_keys": [
+                    "VD_OZNAKA"
+                ],
+                "constraint": "FK_TYPED_DOCUMENT"
+            }
+        ]
+    },
+    {
+        "name": "EDUCATION_FIELDS",
+        "columns": [
+            {
+                "name": "PO_POLJE",
+                "type": "char(2)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "PO_NAZIV",
+                "type": "varchar(120)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            }
+        ],
+        "primary_keys": [
+            "PO_POLJE"
+        ],
+        "references": [
+            {
+                "name": "EDUCATION_GROUPS",
+                "reference_keys": [
+                    "PO_POLJE"
+                ],
+                "constraint": "FK_CONTAINE_GROUPS"
+            }
+        ]
+    },
+    {
+        "name": "EDUCATION_GROUPS",
+        "columns": [
+            {
+                "name": "PO_POLJE",
+                "type": "char(2)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "GRU_GRUPA",
+                "type": "char(2)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "GRU_NAZIV",
+                "type": "varchar(120)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            }
+        ],
+        "primary_keys": [
+            "PO_POLJE",
+            "GRU_GRUPA"
+        ],
+        "references": [
+            {
+                "name": "EDUCATION_SUBGROUPS",
+                "reference_keys": [
+                    "PO_POLJE,",
+                    "GRU_GRUPA"
+                ],
+                "constraint": "FK_HAVE_SUBGROUPS"
+            }
+        ]
+    },
+    {
+        "name": "EDUCATION_PLAN",
+        "columns": [
+            {
+                "name": "TIP_UST",
+                "type": "char(2)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "VU_IDENTIFIKATOR",
+                "type": "int",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "NP_PREDMET",
+                "type": "varchar(6)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "NP_VERZIJA",
+                "type": "numeric(2,0)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "VID_VID",
+                "type": "char(1)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "EPL_WEEK",
+                "type": "numeric(2,0)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "EPL_FOUND",
+                "type": "numeric(2,0)",
+                "additional_attrs": [
+                    "not",
+                    "null",
+                    "default",
+                    "2"
+                ]
+            },
+            {
+                "name": "EPL_DESCRIPTION",
+                "type": "varchar(512)",
+                "additional_attrs": []
+            }
+        ],
+        "primary_keys": [
+            "TIP_UST",
+            "VU_IDENTIFIKATOR",
+            "NP_PREDMET",
+            "NP_VERZIJA",
+            "VID_VID",
+            "EPL_WEEK"
+        ],
+        "references": [
+            {
+                "name": "COVERES_COMPETENCES",
+                "reference_keys": [
+                    "TIP_UST,",
+                    "VU_IDENTIFIKATOR,",
+                    "NP_PREDMET,",
+                    "NP_VERZIJA,",
+                    "VID_VID,",
+                    "EPL_WEEK"
+                ],
+                "constraint": "FK_COVERES_COMPETENCES2"
+            }
+        ]
+    },
+    {
+        "name": "EDUCATION_SUBGROUPS",
+        "columns": [
+            {
+                "name": "PO_POLJE",
+                "type": "char(2)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "GRU_GRUPA",
+                "type": "char(2)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "OBL_OBLAST",
+                "type": "char(2)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "OBL_NAZIV",
+                "type": "varchar(120)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "OBL_KORPUS",
+                "type": "bool",
+                "additional_attrs": [
+                    "not",
+                    "null",
+                    "default",
+                    "0"
+                ]
+            }
+        ],
+        "primary_keys": [
+            "PO_POLJE",
+            "GRU_GRUPA",
+            "OBL_OBLAST"
+        ],
+        "references": [
+            {
+                "name": "COMPETENCE_CATEGORY",
+                "reference_keys": [
+                    "PO_POLJE,",
+                    "GRU_GRUPA,",
+                    "OBL_OBLAST"
+                ],
+                "constraint": "FK_CATEGORISED_COMPETENCIES"
+            },
+            {
+                "name": "COVERED_EDUCATION_SUBGROUPS",
+                "reference_keys": [
+                    "PO_POLJE,",
+                    "GRU_GRUPA,",
+                    "OBL_OBLAST"
+                ],
+                "constraint": "FK_COVERED_EDUCATION_SUBGROUPS"
+            }
+        ]
+    },
+    {
+        "name": "ELECTIVE_COURSEC",
+        "columns": [
+            {
+                "name": "TIP_UST",
+                "type": "char(2)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "VU_IDENTIFIKATOR",
+                "type": "int",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "NP_PREDMET",
+                "type": "varchar(6)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "NP_VERZIJA",
+                "type": "numeric(2,0)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "ELL_POSSITION",
+                "type": "numeric(2,0)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "COU_NP_PREDMET",
+                "type": "varchar(6)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "COU_NP_VERZIJA",
+                "type": "numeric(2,0)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            }
+        ],
+        "primary_keys": [
+            "TIP_UST",
+            "VU_IDENTIFIKATOR",
+            "NP_PREDMET",
+            "NP_VERZIJA",
+            "ELL_POSSITION"
+        ]
+    },
+    {
+        "name": "EMPLOYEES",
+        "columns": [
+            {
+                "name": "TIP_UST",
+                "type": "char(2)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "VU_IDENTIFIKATOR",
+                "type": "int",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "ZAP_REDNI_BROJ",
+                "type": "numeric(6,0)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "ZAP_PREZIME",
+                "type": "varchar(20)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "ZAP_SREDNJE_SLOVO",
+                "type": "char(2)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "ZAP_IME",
+                "type": "varchar(20)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "ZAP_FOTOGRAFIJA",
+                "type": "longblob",
+                "additional_attrs": []
+            },
+            {
+                "name": "ZAP_JMBG",
+                "type": "char(13)",
+                "additional_attrs": []
+            },
+            {
+                "name": "RCP_REDNI_BROJ",
+                "type": "numeric(2,0)",
+                "additional_attrs": []
+            }
+        ],
+        "primary_keys": [
+            "TIP_UST",
+            "VU_IDENTIFIKATOR",
+            "ZAP_REDNI_BROJ"
+        ],
+        "references": [
+            {
+                "name": "CONTACTS",
+                "reference_keys": [
+                    "TIP_UST,",
+                    "VU_IDENTIFIKATOR,",
+                    "ZAP_REDNI_BROJ"
+                ],
+                "constraint": "FK_CONTACT_DATA"
+            },
+            {
+                "name": "CONTRACT_HISTORY",
+                "reference_keys": [
+                    "TIP_UST,",
+                    "VU_IDENTIFIKATOR,",
+                    "ZAP_REDNI_BROJ"
+                ],
+                "constraint": "FK_CONTRACT_HISTORY2"
+            },
+            {
+                "name": "EMPLOYEE_ENGAGEMEENT",
+                "reference_keys": [
+                    "TIP_UST,",
+                    "VU_IDENTIFIKATOR,",
+                    "ZAP_REDNI_BROJ"
+                ],
+                "constraint": "FK_ENGAGED_AT"
+            },
+            {
+                "name": "HISTORY_DATA",
+                "reference_keys": [
+                    "TIP_UST,",
+                    "VU_IDENTIFIKATOR,",
+                    "ZAP_REDNI_BROJ"
+                ],
+                "constraint": "FK_AFFILIATION"
+            },
+            {
+                "name": "OBBLIGATIONS",
+                "reference_keys": [
+                    "TIP_UST,",
+                    "VU_IDENTIFIKATOR,",
+                    "ZAP_REDNI_BROJ"
+                ],
+                "constraint": "FK_ATTENDED_COURSES"
+            },
+            {
+                "name": "PASSED_EXMES",
+                "reference_keys": [
+                    "TIP_UST,",
+                    "VU_IDENTIFIKATOR,",
+                    "ZAP_REDNI_BROJ"
+                ],
+                "constraint": "FK_OTORISED"
+            },
+            {
+                "name": "RELATIVES",
+                "reference_keys": [
+                    "TIP_UST,",
+                    "VU_IDENTIFIKATOR,",
+                    "ZAP_REDNI_BROJ"
+                ],
+                "constraint": "FK_FAMILY"
+            },
+            {
+                "name": "RESPONSIBLE_MANAGER",
+                "reference_keys": [
+                    "TIP_UST,",
+                    "VU_IDENTIFIKATOR,",
+                    "ZAP_REDNI_BROJ"
+                ],
+                "constraint": "FK_RESPONSIBLE_MANAGER"
+            }
+        ]
+    },
+    {
+        "name": "EMPLOYEE_ENGAGEMEENT",
+        "columns": [
+            {
+                "name": "EMP_TIP_UST",
+                "type": "char(2)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "EMP_VU_IDENTIFIKATOR",
+                "type": "int",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "ZAP_REDNI_BROJ",
+                "type": "numeric(6,0)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "RAS_RBR",
+                "type": "numeric(4,0)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "OJ_IDENTIFIKATOR",
+                "type": "int",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "VRO_OZNAKA",
+                "type": "char(2)",
+                "additional_attrs": []
+            },
+            {
+                "name": "RM_OZNAKA",
+                "type": "char(3)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "RAS_ODKADA",
+                "type": "date",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "RAS_DO_KADA",
+                "type": "date",
+                "additional_attrs": []
+            }
+        ],
+        "primary_keys": [
+            "EMP_TIP_UST",
+            "EMP_VU_IDENTIFIKATOR",
+            "ZAP_REDNI_BROJ",
+            "RAS_RBR"
+        ]
+    },
+    {
+        "name": "ENGAGEMENT_CATEGORY",
+        "columns": [
+            {
+                "name": "VRO_OZNAKA",
+                "type": "char(2)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "VRO_NAZIV",
+                "type": "varchar(40)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            }
+        ],
+        "primary_keys": [
+            "VRO_OZNAKA"
+        ],
+        "references": [
+            {
+                "name": "EMPLOYEE_ENGAGEMEENT",
+                "reference_keys": [
+                    "VRO_OZNAKA"
+                ],
+                "constraint": "FK_ENGAGEMENT_TYPE"
+            },
+            {
+                "name": "HISTORY_DATA",
+                "reference_keys": [
+                    "VRO_OZNAKA"
+                ],
+                "constraint": "FK_ENGAGEMENT_AS"
+            }
+        ]
+    },
+    {
+        "name": "FOUND_FOR_TYPE",
+        "columns": [
+            {
+                "name": "TIP_UST",
+                "type": "char(2)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "VU_IDENTIFIKATOR",
+                "type": "int",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "NP_PREDMET",
+                "type": "varchar(6)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "NP_VERZIJA",
+                "type": "numeric(2,0)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "VID_VID",
+                "type": "char(1)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "FOND_UKUPNO_CASOVA",
+                "type": "decimal(5,2)",
+                "additional_attrs": [
+                    "not",
+                    "null",
+                    "default",
+                    "30"
+                ]
+            },
+            {
+                "name": "FOND_NACIN_IZVO_ENJA",
+                "type": "char(1)",
+                "additional_attrs": [
+                    "not",
+                    "null",
+                    "default",
+                    "'C'"
+                ]
+            }
+        ],
+        "primary_keys": [
+            "TIP_UST",
+            "VU_IDENTIFIKATOR",
+            "NP_PREDMET",
+            "NP_VERZIJA",
+            "VID_VID"
+        ]
+    },
+    {
+        "name": "HIGH_EDUCATION_INSTITUTION",
+        "columns": [
+            {
+                "name": "TIP_UST",
+                "type": "char(2)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "VU_IDENTIFIKATOR",
+                "type": "int",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "VU_NAZIV",
+                "type": "varchar(120)",
+                "additional_attrs": []
+            },
+            {
+                "name": "NM_IDENTIFIKATOR",
+                "type": "bigint",
+                "additional_attrs": []
+            },
+            {
+                "name": "VU_ADRESA",
+                "type": "varchar(60)",
+                "additional_attrs": []
+            },
+            {
+                "name": "VU_OSNOVANA",
+                "type": "date",
+                "additional_attrs": []
+            },
+            {
+                "name": "VU_GRB",
+                "type": "longblob",
+                "additional_attrs": []
+            },
+            {
+                "name": "VU_MEMORANDUM",
+                "type": "longblob",
+                "additional_attrs": []
+            },
+            {
+                "name": "VU_WEB_ADRESA",
+                "type": "varchar(80)",
+                "additional_attrs": []
+            },
+            {
+                "name": "VU_E_MAIL",
+                "type": "varchar(60)",
+                "additional_attrs": []
+            },
+            {
+                "name": "VU_PIB",
+                "type": "char(10)",
+                "additional_attrs": []
+            },
+            {
+                "name": "VU_MATICNI_BROJ",
+                "type": "char(11)",
+                "additional_attrs": []
+            },
+            {
+                "name": "DR_IDENTIFIKATOR",
+                "type": "char(3)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "VV_OZNAKA",
+                "type": "char(2)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            }
+        ],
+        "primary_keys": [
+            "TIP_UST",
+            "VU_IDENTIFIKATOR"
+        ],
+        "references": [
+            {
+                "name": "ACT_OF_ORGANIZATION",
+                "reference_keys": [
+                    "TIP_UST,",
+                    "VU_IDENTIFIKATOR"
+                ],
+                "constraint": "FK_DOCUMENT"
+            },
+            {
+                "name": "COURSE",
+                "reference_keys": [
+                    "TIP_UST,",
+                    "VU_IDENTIFIKATOR"
+                ],
+                "constraint": "FK_RUN_COURSES"
+            },
+            {
+                "name": "DOCCUMENTS_OF_EMPLOYMENT",
+                "reference_keys": [
+                    "TIP_UST,",
+                    "VU_IDENTIFIKATOR"
+                ],
+                "constraint": "FK_CONTRACTS_PROTOCOL"
+            },
+            {
+                "name": "EMPLOYEES",
+                "reference_keys": [
+                    "TIP_UST,",
+                    "VU_IDENTIFIKATOR"
+                ],
+                "constraint": "FK_EMPLOYEED"
+            },
+            {
+                "name": "INSTITUTION_STRUCTURE",
+                "reference_keys": [
+                    "TIP_UST,",
+                    "VU_IDENTIFIKATOR"
+                ],
+                "constraint": "FK_WHO_IS_IN_ORGANIZATION"
+            },
+            {
+                "name": "MANAGEMENT_STRUCTURE",
+                "reference_keys": [
+                    "TIP_UST,",
+                    "VU_IDENTIFIKATOR"
+                ],
+                "constraint": "FK_MANAGEMENT"
+            },
+            {
+                "name": "ORGANIZATIONAL_UNIT",
+                "reference_keys": [
+                    "TIP_UST,",
+                    "VU_IDENTIFIKATOR"
+                ],
+                "constraint": "FK_INTERNAL_ORGANIZATION"
+            },
+            {
+                "name": "PROGRAM_EVIDENCE",
+                "reference_keys": [
+                    "TIP_UST,",
+                    "VU_IDENTIFIKATOR"
+                ],
+                "constraint": "FK_EVIDENCE"
+            },
+            {
+                "name": "REGISTERED_CURRICULUMS",
+                "reference_keys": [
+                    "TIP_UST,",
+                    "VU_IDENTIFIKATOR"
+                ],
+                "constraint": "FK_REGISTERED_CURRICULUMS"
+            },
+            {
+                "name": "STUDENT___PERSONAL_DATA",
+                "reference_keys": [
+                    "TIP_UST,",
+                    "VU_IDENTIFIKATOR"
+                ],
+                "constraint": "FK_STUDY_AT"
+            },
+            {
+                "name": "WORK_POSSITIONS",
+                "reference_keys": [
+                    "TIP_UST,",
+                    "VU_IDENTIFIKATOR"
+                ],
+                "constraint": "FK_WORK_POSSITIONS"
+            }
+        ]
+    },
+    {
+        "name": "HISTORY_DATA",
+        "columns": [
+            {
+                "name": "TIP_UST",
+                "type": "char(2)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "EMP_VU_IDENTIFIKATOR",
+                "type": "int",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "ZAP_REDNI_BROJ",
+                "type": "numeric(6,0)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "PL_OZNAKA",
+                "type": "int",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "IST_IDENT",
+                "type": "smallint",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "VRO_OZNAKA",
+                "type": "char(2)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "RM_OZNAKA",
+                "type": "char(3)",
+                "additional_attrs": []
+            },
+            {
+                "name": "IST_OD",
+                "type": "date",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "IST_DO",
+                "type": "date",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "IST_STAZ_GODINA",
+                "type": "numeric(2,0)",
+                "additional_attrs": [
+                    "not",
+                    "null",
+                    "default",
+                    "0"
+                ]
+            },
+            {
+                "name": "IST_STAZ_MESECI",
+                "type": "numeric(2,0)",
+                "additional_attrs": [
+                    "not",
+                    "null",
+                    "default",
+                    "0"
+                ]
+            },
+            {
+                "name": "IST_STAZ_DANA",
+                "type": "numeric(2,0)",
+                "additional_attrs": [
+                    "not",
+                    "null",
+                    "default",
+                    "0"
+                ]
+            }
+        ],
+        "primary_keys": [
+            "TIP_UST",
+            "EMP_VU_IDENTIFIKATOR",
+            "ZAP_REDNI_BROJ",
+            "PL_OZNAKA",
+            "IST_IDENT"
+        ]
+    },
+    {
+        "name": "INSTITUTION_STRUCTURE",
+        "columns": [
+            {
+                "name": "TIP_UST",
+                "type": "char(2)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "ACT_VU_IDENTIFIKATOR",
+                "type": "int",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "AO_REDNI_BROJ",
+                "type": "numeric(4,0)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "HIG_TIP_UST",
+                "type": "char(2)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "VU_IDENTIFIKATOR",
+                "type": "int",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            }
+        ],
+        "primary_keys": [
+            "HIG_TIP_UST",
+            "TIP_UST",
+            "ACT_VU_IDENTIFIKATOR",
+            "AO_REDNI_BROJ",
+            "VU_IDENTIFIKATOR"
+        ]
+    },
+    {
+        "name": "INTERNAL_STRUCTURE",
+        "columns": [
+            {
+                "name": "DOC_DOC_ID",
+                "type": "numeric(3,0)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "DOC_ID",
+                "type": "numeric(3,0)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            }
+        ],
+        "primary_keys": [
+            "DOC_ID",
+            "DOC_DOC_ID"
+        ]
+    },
+    {
+        "name": "LANGUAGES",
+        "columns": [
+            {
+                "name": "JEZ_JEZIK",
+                "type": "char(3)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "JEZ_NAZIV",
+                "type": "varchar(40)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            }
+        ],
+        "primary_keys": [
+            "JEZ_JEZIK"
+        ],
+        "references": [
+            {
+                "name": "OFFICTIAL_LANGUAGES",
+                "reference_keys": [
+                    "JEZ_JEZIK"
+                ],
+                "constraint": "FK_OFFICTIAL_LANGUAGES_IN_STATE"
+            },
+            {
+                "name": "REGISTERED_CURRICULUMS",
+                "reference_keys": [
+                    "JEZ_JEZIK"
+                ],
+                "constraint": "FK_CURRICULUM_LANGUAGE"
+            }
+        ]
+    },
+    {
+        "name": "LECTURING_TYPE",
+        "columns": [
+            {
+                "name": "VID_VID",
+                "type": "char(1)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "VID_NAZIV",
+                "type": "varchar(40)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            }
+        ],
+        "primary_keys": [
+            "VID_VID"
+        ],
+        "references": [
+            {
+                "name": "EDUCATION_PLAN",
+                "reference_keys": [
+                    "VID_VID"
+                ],
+                "constraint": "FK_FOR_TYPE"
+            },
+            {
+                "name": "FOUND_FOR_TYPE",
+                "reference_keys": [
+                    "VID_VID"
+                ],
+                "constraint": "FK_FUND_FOR_TYPE"
+            }
+        ]
+    },
+    {
+        "name": "MANAGEMENT_POSITIONS",
+        "columns": [
+            {
+                "name": "POZ_OZNAKA",
+                "type": "char(2)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "POZ_NAZIV",
+                "type": "varchar(60)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            }
+        ],
+        "primary_keys": [
+            "POZ_OZNAKA"
+        ],
+        "references": [
+            {
+                "name": "MANAGEMENT_SCHEMA",
+                "reference_keys": [
+                    "POZ_OZNAKA"
+                ],
+                "constraint": "FK_MANAGEME_MANAGEMEN_MANAGEM2"
+            }
+        ]
+    },
+    {
+        "name": "MANAGEMENT_SCHEMA",
+        "columns": [
+            {
+                "name": "HIG_TIP_UST",
+                "type": "char(2)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "VU_IDENTIFIKATOR",
+                "type": "int",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "RS_IDENTIFIKATOR",
+                "type": "smallint",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "POZ_OZNAKA",
+                "type": "char(2)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            }
+        ],
+        "primary_keys": [
+            "HIG_TIP_UST",
+            "VU_IDENTIFIKATOR",
+            "POZ_OZNAKA",
+            "RS_IDENTIFIKATOR"
+        ]
+    },
+    {
+        "name": "MANAGEMENT_STRUCTURE",
+        "columns": [
+            {
+                "name": "HIG_TIP_UST",
+                "type": "char(2)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "VU_IDENTIFIKATOR",
+                "type": "int",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "RS_IDENTIFIKATOR",
+                "type": "smallint",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "OJ_IDENTIFIKATOR",
+                "type": "int",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "RS_DATUM_FORMIRANJA",
+                "type": "date",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            }
+        ],
+        "primary_keys": [
+            "HIG_TIP_UST",
+            "VU_IDENTIFIKATOR",
+            "RS_IDENTIFIKATOR"
+        ],
+        "references": [
+            {
+                "name": "MANAGEMENT_SCHEMA",
+                "reference_keys": [
+                    "HIG_TIP_UST,",
+                    "VU_IDENTIFIKATOR,",
+                    "RS_IDENTIFIKATOR"
+                ],
+                "constraint": "FK_MANAGEMENT_SCHEMA2"
+            }
+        ]
+    },
+    {
+        "name": "OBBLIGATIONS",
+        "columns": [
+            {
+                "name": "HIG_TIP_UST",
+                "type": "char(2)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "VU_IDENTIFIKATOR",
+                "type": "int",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "PG_IDENT",
+                "type": "char(2)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "STU_EVIDENCE_NUMBER",
+                "type": "numeric(4,0)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "STU_EVIDENCE_YER",
+                "type": "numeric(4,0)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "OBL_ID",
+                "type": "smallint",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "NP_PREDMET",
+                "type": "varchar(6)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "NP_VERZIJA",
+                "type": "numeric(2,0)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "OBL_TAKEN_DATE",
+                "type": "date",
+                "additional_attrs": []
+            },
+            {
+                "name": "ZAP_REDNI_BROJ",
+                "type": "numeric(6,0)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            }
+        ],
+        "primary_keys": [
+            "HIG_TIP_UST",
+            "VU_IDENTIFIKATOR",
+            "PG_IDENT",
+            "STU_EVIDENCE_NUMBER",
+            "STU_EVIDENCE_YER",
+            "OBL_ID"
+        ]
+    },
+    {
+        "name": "OFFICTIAL_LANGUAGES",
+        "columns": [
+            {
+                "name": "JEZ_JEZIK",
+                "type": "char(3)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "DR_IDENTIFIKATOR",
+                "type": "char(3)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            }
+        ],
+        "primary_keys": [
+            "JEZ_JEZIK",
+            "DR_IDENTIFIKATOR"
+        ]
+    },
+    {
+        "name": "ORGANIZATIONAL_UNIT",
+        "columns": [
+            {
+                "name": "TIP_UST",
+                "type": "char(2)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "VU_IDENTIFIKATOR",
+                "type": "int",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "OJ_IDENTIFIKATOR",
+                "type": "int",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "OJ_NAZIV",
+                "type": "varchar(80)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "DR_IDENTIFIKATOR",
+                "type": "char(3)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "NM_IDENTIFIKATOR",
+                "type": "bigint",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "OJ_ADRESA",
+                "type": "varchar(80)",
+                "additional_attrs": []
+            }
+        ],
+        "primary_keys": [
+            "TIP_UST",
+            "VU_IDENTIFIKATOR",
+            "OJ_IDENTIFIKATOR"
+        ],
+        "references": [
+            {
+                "name": "ACT_OF_ORGANIZATION",
+                "reference_keys": [
+                    "TIP_UST,",
+                    "VU_IDENTIFIKATOR,",
+                    "OJ_IDENTIFIKATOR"
+                ],
+                "constraint": "FK_APPROVED_BY"
+            },
+            {
+                "name": "COMPOSED_OF_UNITS",
+                "reference_keys": [
+                    "TIP_UST,",
+                    "VU_IDENTIFIKATOR,",
+                    "OJ_IDENTIFIKATOR"
+                ],
+                "constraint": "FK_COMPOSED_OF_UNITS"
+            },
+            {
+                "name": "COMPOSED_OF_UNITS",
+                "reference_keys": [
+                    "TIP_UST,",
+                    "VU_IDENTIFIKATOR,",
+                    "OJ_IDENTIFIKATOR"
+                ],
+                "constraint": "FK_COMPOSITE_UNIT"
+            },
+            {
+                "name": "EMPLOYEE_ENGAGEMEENT",
+                "reference_keys": [
+                    "TIP_UST,",
+                    "VU_IDENTIFIKATOR,",
+                    "OJ_IDENTIFIKATOR"
+                ],
+                "constraint": "FK_APPOINTED_PERSONS_AT_WP"
+            },
+            {
+                "name": "MANAGEMENT_STRUCTURE",
+                "reference_keys": [
+                    "TIP_UST,",
+                    "VU_IDENTIFIKATOR,",
+                    "OJ_IDENTIFIKATOR"
+                ],
+                "constraint": "FK_FORMED_BY"
+            },
+            {
+                "name": "`SCHEMA`",
+                "reference_keys": [
+                    "TIP_UST,",
+                    "VU_IDENTIFIKATOR,",
+                    "OJ_IDENTIFIKATOR"
+                ],
+                "constraint": "FK_UN_IT_IN_SCHEMA"
+            }
+        ]
+    },
+    {
+        "name": "OTHER_INSTITUTIONS",
+        "columns": [
+            {
+                "name": "PL_OZNAKA",
+                "type": "int",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "DR_IDENTIFIKATOR",
+                "type": "char(3)",
+                "additional_attrs": []
+            },
+            {
+                "name": "PL_NAZIV",
+                "type": "varchar(120)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "NM_IDENTIFIKATOR",
+                "type": "bigint",
+                "additional_attrs": []
+            }
+        ],
+        "primary_keys": [
+            "PL_OZNAKA"
+        ],
+        "references": [
+            {
+                "name": "ADITIONAL_DATA",
+                "reference_keys": [
+                    "PL_OZNAKA"
+                ],
+                "constraint": "FK_PREMA_PRAVNOM_LICU"
+            },
+            {
+                "name": "HISTORY_DATA",
+                "reference_keys": [
+                    "PL_OZNAKA"
+                ],
+                "constraint": "FK_RADILI_KOD"
+            }
+        ]
+    },
+    {
+        "name": "OWNERSHIP_TYPE",
+        "columns": [
+            {
+                "name": "VV_OZNAKA",
+                "type": "char(2)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "VV_NAZIV",
+                "type": "varchar(40)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            }
+        ],
+        "primary_keys": [
+            "VV_OZNAKA"
+        ],
+        "references": [
+            {
+                "name": "HIGH_EDUCATION_INSTITUTION",
+                "reference_keys": [
+                    "VV_OZNAKA"
+                ],
+                "constraint": "FK_TYPE_OF_OWNERSHIP"
+            }
+        ]
+    },
+    {
+        "name": "PASSED_EXMES",
+        "columns": [
+            {
+                "name": "HIG_TIP_UST",
+                "type": "char(2)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "VU_IDENTIFIKATOR",
+                "type": "int",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "PG_IDENT",
+                "type": "char(2)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "STU_EVIDENCE_NUMBER",
+                "type": "numeric(4,0)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "STU_EVIDENCE_YER",
+                "type": "numeric(4,0)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "NP_PREDMET",
+                "type": "varchar(6)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "NP_VERZIJA",
+                "type": "numeric(2,0)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "ZAP_REDNI_BROJ",
+                "type": "numeric(6,0)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "PASS_DATE",
+                "type": "date",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "PASS_POINTS",
+                "type": "decimal(5,2)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "PASS_KLASIFICATION",
+                "type": "char(2)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            }
+        ],
+        "primary_keys": [
+            "HIG_TIP_UST",
+            "VU_IDENTIFIKATOR",
+            "PG_IDENT",
+            "STU_EVIDENCE_NUMBER",
+            "STU_EVIDENCE_YER"
+        ]
+    },
+    {
+        "name": "POPULATED_PLACES",
+        "columns": [
+            {
+                "name": "DR_IDENTIFIKATOR",
+                "type": "char(3)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "NM_IDENTIFIKATOR",
+                "type": "bigint",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "NM_NAZIV",
+                "type": "varchar(40)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "NM_PTT_CODE",
+                "type": "longtext",
+                "additional_attrs": []
+            }
+        ],
+        "primary_keys": [
+            "DR_IDENTIFIKATOR",
+            "NM_IDENTIFIKATOR"
+        ],
+        "references": [
+            {
+                "name": "CONTACTS",
+                "reference_keys": [
+                    "DR_IDENTIFIKATOR,",
+                    "NM_IDENTIFIKATOR"
+                ],
+                "constraint": "FK_CITY"
+            },
+            {
+                "name": "HIGH_EDUCATION_INSTITUTION",
+                "reference_keys": [
+                    "DR_IDENTIFIKATOR,",
+                    "NM_IDENTIFIKATOR"
+                ],
+                "constraint": "FK_HAS_AN_FACULRY_INSTITUTION"
+            },
+            {
+                "name": "ORGANIZATIONAL_UNIT",
+                "reference_keys": [
+                    "DR_IDENTIFIKATOR,",
+                    "NM_IDENTIFIKATOR"
+                ],
+                "constraint": "FK_SEDISTE_JEDINICE"
+            },
+            {
+                "name": "OTHER_INSTITUTIONS",
+                "reference_keys": [
+                    "DR_IDENTIFIKATOR,",
+                    "NM_IDENTIFIKATOR"
+                ],
+                "constraint": "FK_LOCATED_IN"
+            },
+            {
+                "name": "STATE",
+                "reference_keys": [
+                    "DR_IDENTIFIKATOR,",
+                    "NM_IDENTIFIKATOR"
+                ],
+                "constraint": "FK_CAPITAL"
+            }
+        ]
+    },
+    {
+        "name": "PROFESSIONS",
+        "columns": [
+            {
+                "name": "SN_OZNAKA",
+                "type": "char(2)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "SN_STRUCNI_NAZIV",
+                "type": "varchar(120)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "SN_SKRACENI_NAZIV",
+                "type": "varchar(12)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            }
+        ],
+        "primary_keys": [
+            "SN_OZNAKA"
+        ],
+        "references": [
+            {
+                "name": "CURRICULUM_LEVEL",
+                "reference_keys": [
+                    "SN_OZNAKA"
+                ],
+                "constraint": "FK_LEVEL_BASED_PROFESSION"
+            },
+            {
+                "name": "REGISTERED_CURRICULUMS",
+                "reference_keys": [
+                    "SN_OZNAKA"
+                ],
+                "constraint": "FK_CURRICULUM_PROFESSION"
+            }
+        ]
+    },
+    {
+        "name": "PROGRAM_EVIDENCE",
+        "columns": [
+            {
+                "name": "HIG_TIP_UST",
+                "type": "char(2)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "VU_IDENTIFIKATOR",
+                "type": "int",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "PG_IDENT",
+                "type": "char(2)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "PG_NAME",
+                "type": "varchar(120)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "TIPP_TIP",
+                "type": "char(1)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "SP_EVIDENCIONI_BROJ",
+                "type": "int",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "SP_VERZIJA",
+                "type": "numeric(2,0)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            }
+        ],
+        "primary_keys": [
+            "HIG_TIP_UST",
+            "VU_IDENTIFIKATOR",
+            "PG_IDENT"
+        ],
+        "references": [
+            {
+                "name": "STUDENT_STUDY_DATA",
+                "reference_keys": [
+                    "HIG_TIP_UST,",
+                    "VU_IDENTIFIKATOR,",
+                    "PG_IDENT"
+                ],
+                "constraint": "FK_EVIDENCE_IDENT"
+            }
+        ]
+    },
+    {
+        "name": "REGISTERED_CURRICULUMS",
+        "columns": [
+            {
+                "name": "TIP_UST",
+                "type": "char(2)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "VU_IDENTIFIKATOR",
+                "type": "int",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "TIPP_TIP",
+                "type": "char(1)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "SP_EVIDENCIONI_BROJ",
+                "type": "int",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "SP_VERZIJA",
+                "type": "numeric(2,0)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "SP_NAZIV",
+                "type": "varchar(60)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "SP_DATUM_FORMIRANJA",
+                "type": "date",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "SP_DATUM_UKIDANJA",
+                "type": "date",
+                "additional_attrs": []
+            },
+            {
+                "name": "SP_ECTS",
+                "type": "numeric(3,0)",
+                "additional_attrs": [
+                    "not",
+                    "null",
+                    "default",
+                    "60"
+                ]
+            },
+            {
+                "name": "JEZ_JEZIK",
+                "type": "char(3)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "STS_OZNAKA",
+                "type": "char(2)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "NS_NIVO",
+                "type": "numeric(1,0)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "SN_OZNAKA",
+                "type": "char(2)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            }
+        ],
+        "primary_keys": [
+            "TIP_UST",
+            "VU_IDENTIFIKATOR",
+            "TIPP_TIP",
+            "SP_EVIDENCIONI_BROJ",
+            "SP_VERZIJA"
+        ],
+        "references": [
+            {
+                "name": "COVERED_COMPETENCIES",
+                "reference_keys": [
+                    "TIP_UST,",
+                    "VU_IDENTIFIKATOR,",
+                    "TIPP_TIP,",
+                    "SP_EVIDENCIONI_BROJ,",
+                    "SP_VERZIJA"
+                ],
+                "constraint": "FK_COVERED_COMPETENCIES"
+            },
+            {
+                "name": "COVERED_EDUCATION_SUBGROUPS",
+                "reference_keys": [
+                    "TIP_UST,",
+                    "VU_IDENTIFIKATOR,",
+                    "TIPP_TIP,",
+                    "SP_EVIDENCIONI_BROJ,",
+                    "SP_VERZIJA"
+                ],
+                "constraint": "FK_COVERED_EDUCATION_SUBGROUPS2"
+            },
+            {
+                "name": "CURRICULUM_STRUCTURE",
+                "reference_keys": [
+                    "TIP_UST,",
+                    "VU_IDENTIFIKATOR,",
+                    "TIPP_TIP,",
+                    "SP_EVIDENCIONI_BROJ,",
+                    "SP_VERZIJA"
+                ],
+                "constraint": "FK_CURRICULUM_STRUCTURE"
+            },
+            {
+                "name": "DOCUMENT_INSTANCE",
+                "reference_keys": [
+                    "TIP_UST,",
+                    "VU_IDENTIFIKATOR,",
+                    "TIPP_TIP,",
+                    "SP_EVIDENCIONI_BROJ,",
+                    "SP_VERZIJA"
+                ],
+                "constraint": "FK_CURRICULUM_DOCUMENTATION"
+            },
+            {
+                "name": "PROGRAM_EVIDENCE",
+                "reference_keys": [
+                    "TIP_UST,",
+                    "VU_IDENTIFIKATOR,",
+                    "TIPP_TIP,",
+                    "SP_EVIDENCIONI_BROJ,",
+                    "SP_VERZIJA"
+                ],
+                "constraint": "FK_IN_THE_EVIDENCE"
+            }
+        ]
+    },
+    {
+        "name": "RELATION_TYPE",
+        "columns": [
+            {
+                "name": "VSR_OZNAKA",
+                "type": "char(2)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "VSR_NAZIV",
+                "type": "varchar(30)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            }
+        ],
+        "primary_keys": [
+            "VSR_OZNAKA"
+        ],
+        "references": [
+            {
+                "name": "RELATIVES",
+                "reference_keys": [
+                    "VSR_OZNAKA"
+                ],
+                "constraint": "FK_REALATED_AS"
+            }
+        ]
+    },
+    {
+        "name": "RELATIVES",
+        "columns": [
+            {
+                "name": "TIP_UST",
+                "type": "char(2)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "VU_IDENTIFIKATOR",
+                "type": "int",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "ZAP_REDNI_BROJ",
+                "type": "numeric(6,0)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "RCP_REDNI_BROJ",
+                "type": "numeric(2,0)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "VSR_OZNAKA",
+                "type": "char(2)",
+                "additional_attrs": []
+            },
+            {
+                "name": "RCP_PREZIME",
+                "type": "varchar(20)",
+                "additional_attrs": []
+            },
+            {
+                "name": "RCP_IME",
+                "type": "varchar(20)",
+                "additional_attrs": []
+            },
+            {
+                "name": "RCP_JMBG",
+                "type": "char(13)",
+                "additional_attrs": []
+            }
+        ],
+        "primary_keys": [
+            "TIP_UST",
+            "VU_IDENTIFIKATOR",
+            "ZAP_REDNI_BROJ",
+            "RCP_REDNI_BROJ"
+        ],
+        "references": [
+            {
+                "name": "ADITIONAL_DATA",
+                "reference_keys": [
+                    "TIP_UST,",
+                    "VU_IDENTIFIKATOR,",
+                    "ZAP_REDNI_BROJ,",
+                    "RCP_REDNI_BROJ"
+                ],
+                "constraint": "FK_RELATIV_ROLE"
+            },
+            {
+                "name": "EMPLOYEES",
+                "reference_keys": [
+                    "TIP_UST,",
+                    "VU_IDENTIFIKATOR,",
+                    "ZAP_REDNI_BROJ,",
+                    "RCP_REDNI_BROJ"
+                ],
+                "constraint": "FK_ALSO_EMPLOYEED"
+            }
+        ]
+    },
+    {
+        "name": "RESPONSIBLE_MANAGER",
+        "columns": [
+            {
+                "name": "DOC_TIP_UST",
+                "type": "char(2)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "VU_IDENTIFIKATOR",
+                "type": "int",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "VD_OZNAKA",
+                "type": "char(2)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "UG_GODINA",
+                "type": "numeric(4,0)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "UG_BROJ_UGOVORA",
+                "type": "int",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "ZAP_REDNI_BROJ",
+                "type": "numeric(6,0)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            }
+        ],
+        "primary_keys": [
+            "DOC_TIP_UST",
+            "VU_IDENTIFIKATOR",
+            "ZAP_REDNI_BROJ",
+            "VD_OZNAKA",
+            "UG_GODINA",
+            "UG_BROJ_UGOVORA"
+        ]
+    },
+    {
+        "name": "ROLE",
+        "columns": [
+            {
+                "name": "ULO_OZNAKA",
+                "type": "char(2)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "ULO_NAZIV",
+                "type": "varchar(40)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            }
+        ],
+        "primary_keys": [
+            "ULO_OZNAKA"
+        ],
+        "references": [
+            {
+                "name": "ADITIONAL_DATA",
+                "reference_keys": [
+                    "ULO_OZNAKA"
+                ],
+                "constraint": "FK_ENROLED"
+            }
+        ]
+    },
+    {
+        "name": "SCHEMA",
+        "columns": [
+            {
+                "name": "TIP_UST",
+                "type": "char(2)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "ACT_VU_IDENTIFIKATOR",
+                "type": "int",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "AO_REDNI_BROJ",
+                "type": "numeric(4,0)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "OJ_IDENTIFIKATOR",
+                "type": "int",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            }
+        ],
+        "primary_keys": [
+            "TIP_UST",
+            "ACT_VU_IDENTIFIKATOR",
+            "AO_REDNI_BROJ",
+            "OJ_IDENTIFIKATOR"
+        ]
+    },
+    {
+        "name": "STATE",
+        "columns": [
+            {
+                "name": "DR_IDENTIFIKATOR",
+                "type": "char(3)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "DR_NAZIV",
+                "type": "varchar(80)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "DR_DATUM_OSNIVANJA",
+                "type": "date",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "DR_POSTOJALA_DO",
+                "type": "date",
+                "additional_attrs": []
+            },
+            {
+                "name": "DR_GRB",
+                "type": "longblob",
+                "additional_attrs": []
+            },
+            {
+                "name": "DR_ZASTAVA",
+                "type": "longblob",
+                "additional_attrs": []
+            },
+            {
+                "name": "DR_HIMNA",
+                "type": "longblob",
+                "additional_attrs": []
+            },
+            {
+                "name": "STA_DR_IDENTIFIKATOR",
+                "type": "char(3)",
+                "additional_attrs": []
+            },
+            {
+                "name": "NM_IDENTIFIKATOR",
+                "type": "bigint",
+                "additional_attrs": []
+            }
+        ],
+        "primary_keys": [
+            "DR_IDENTIFIKATOR"
+        ],
+        "references": [
+            {
+                "name": "COMPOSITE_STATE",
+                "reference_keys": [
+                    "DR_IDENTIFIKATOR"
+                ],
+                "constraint": "FK_COMPOSITE_STATE"
+            },
+            {
+                "name": "COMPOSITE_STATE",
+                "reference_keys": [
+                    "DR_IDENTIFIKATOR"
+                ],
+                "constraint": "FK_EMBEDDED_STATE"
+            },
+            {
+                "name": "HIGH_EDUCATION_INSTITUTION",
+                "reference_keys": [
+                    "DR_IDENTIFIKATOR"
+                ],
+                "constraint": "FK_REGISTRATED_INSTITUTIONS"
+            },
+            {
+                "name": "OFFICTIAL_LANGUAGES",
+                "reference_keys": [
+                    "DR_IDENTIFIKATOR"
+                ],
+                "constraint": "FK_OFFICTIAL_LANGUAGES"
+            },
+            {
+                "name": "POPULATED_PLACES",
+                "reference_keys": [
+                    "DR_IDENTIFIKATOR"
+                ],
+                "constraint": "FK_POPULATED_PLACES"
+            },
+            {
+                "name": "STATE",
+                "reference_keys": [
+                    "DR_IDENTIFIKATOR"
+                ],
+                "constraint": "FK_LEGAL_SUCCESSOR"
+            }
+        ]
+    },
+    {
+        "name": "STRUCTURED_CATEGORIES",
+        "columns": [
+            {
+                "name": "PO_POLJE",
+                "type": "char(2)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "GRU_GRUPA",
+                "type": "char(2)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "OBL_OBLAST",
+                "type": "char(2)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "KOMP_KATEGORIJA",
+                "type": "char(2)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "KAT_PO_POLJE",
+                "type": "char(2)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "KAT_GRU_GRUPA",
+                "type": "char(2)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "KAT_OBL_OBLAST",
+                "type": "char(2)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "KAT_KOMP_KATEGORIJA",
+                "type": "char(2)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "COM_KOMP_KATEGORIJA",
+                "type": "char(2)",
+                "additional_attrs": []
+            }
+        ],
+        "primary_keys": [
+            "PO_POLJE",
+            "GRU_GRUPA",
+            "OBL_OBLAST",
+            "KOMP_KATEGORIJA",
+            "KAT_KOMP_KATEGORIJA"
+        ]
+    },
+    {
+        "name": "STRUCTURED_COMPETENCE",
+        "columns": [
+            {
+                "name": "PO_POLJE",
+                "type": "char(2)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "GRU_GRUPA",
+                "type": "char(2)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "OBL_OBLAST",
+                "type": "char(2)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "KOMP_KATEGORIJA",
+                "type": "char(2)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "KO_KOMPETENCIJA",
+                "type": "char(2)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "COM_KO_KOMPETENCIJA",
+                "type": "char(2)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            }
+        ],
+        "primary_keys": [
+            "PO_POLJE",
+            "GRU_GRUPA",
+            "OBL_OBLAST",
+            "KOMP_KATEGORIJA",
+            "KO_KOMPETENCIJA",
+            "COM_KO_KOMPETENCIJA"
+        ]
+    },
+    {
+        "name": "STUDENT_STUDY_DATA",
+        "columns": [
+            {
+                "name": "HIG_TIP_UST",
+                "type": "char(2)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "VU_IDENTIFIKATOR",
+                "type": "int",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "PG_IDENT",
+                "type": "char(2)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "STU_EVIDENCE_NUMBER",
+                "type": "numeric(4,0)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "STU_EVIDENCE_YER",
+                "type": "numeric(4,0)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "STU_ID",
+                "type": "bigint",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "STU_TAKEN",
+                "type": "numeric(3,0)",
+                "additional_attrs": [
+                    "not",
+                    "null",
+                    "default",
+                    "0"
+                ]
+            },
+            {
+                "name": "STU_VERIFIED",
+                "type": "numeric(3,0)",
+                "additional_attrs": [
+                    "not",
+                    "null",
+                    "default",
+                    "0"
+                ]
+            }
+        ],
+        "primary_keys": [
+            "HIG_TIP_UST",
+            "VU_IDENTIFIKATOR",
+            "PG_IDENT",
+            "STU_EVIDENCE_NUMBER",
+            "STU_EVIDENCE_YER"
+        ],
+        "references": [
+            {
+                "name": "OBBLIGATIONS",
+                "reference_keys": [
+                    "HIG_TIP_UST,",
+                    "VU_IDENTIFIKATOR,",
+                    "PG_IDENT,",
+                    "STU_EVIDENCE_NUMBER,",
+                    "STU_EVIDENCE_YER"
+                ],
+                "constraint": "FK_HAS_TO_FULLFILE"
+            },
+            {
+                "name": "PASSED_EXMES",
+                "reference_keys": [
+                    "HIG_TIP_UST,",
+                    "VU_IDENTIFIKATOR,",
+                    "PG_IDENT,",
+                    "STU_EVIDENCE_NUMBER,",
+                    "STU_EVIDENCE_YER"
+                ],
+                "constraint": "FK_PASSED"
+            }
+        ]
+    },
+    {
+        "name": "STUDENT___PERSONAL_DATA",
+        "columns": [
+            {
+                "name": "TIP_UST",
+                "type": "char(2)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "VU_IDENTIFIKATOR",
+                "type": "int",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "STU_ID",
+                "type": "bigint",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "STU_PREZIME",
+                "type": "varchar(20)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "STU_IME_RODITELJA",
+                "type": "varchar(20)",
+                "additional_attrs": []
+            },
+            {
+                "name": "STU_IME",
+                "type": "varchar(20)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "STU_POL",
+                "type": "char(1)",
+                "additional_attrs": [
+                    "not",
+                    "null",
+                    "default",
+                    "'N'"
+                ]
+            },
+            {
+                "name": "STU_ADRESA_STANOVANJA",
+                "type": "varchar(80)",
+                "additional_attrs": []
+            },
+            {
+                "name": "STU_TELEFON",
+                "type": "varchar(20)",
+                "additional_attrs": []
+            },
+            {
+                "name": "STU_JMBG",
+                "type": "char(13)",
+                "additional_attrs": []
+            },
+            {
+                "name": "STU_EMAIL",
+                "type": "varchar(40)",
+                "additional_attrs": []
+            }
+        ],
+        "primary_keys": [
+            "TIP_UST",
+            "VU_IDENTIFIKATOR",
+            "STU_ID"
+        ],
+        "references": [
+            {
+                "name": "STUDENT_STUDY_DATA",
+                "reference_keys": [
+                    "TIP_UST,",
+                    "VU_IDENTIFIKATOR,",
+                    "STU_ID"
+                ],
+                "constraint": "FK_IN_EVIDENCE"
+            }
+        ]
+    },
+    {
+        "name": "TYPES_OF_INSTITUTIONS",
+        "columns": [
+            {
+                "name": "TIP_UST",
+                "type": "char(2)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "TIP_NAZIV",
+                "type": "varchar(40)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            }
+        ],
+        "primary_keys": [
+            "TIP_UST"
+        ],
+        "references": [
+            {
+                "name": "HIGH_EDUCATION_INSTITUTION",
+                "reference_keys": [
+                    "TIP_UST"
+                ],
+                "constraint": "FK_TYPED_INSTITUTION"
+            }
+        ]
+    },
+    {
+        "name": "TYPE_OF_BLOCK",
+        "columns": [
+            {
+                "name": "ON_OZNAKA",
+                "type": "char(1)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "ON_NAZIV",
+                "type": "varchar(20)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            }
+        ],
+        "primary_keys": [
+            "ON_OZNAKA"
+        ],
+        "references": [
+            {
+                "name": "CURRICULUM_STRUCTURE",
+                "reference_keys": [
+                    "ON_OZNAKA"
+                ],
+                "constraint": "FK_CURRICULUM_BLOCKS"
+            }
+        ]
+    },
+    {
+        "name": "WORK_POSSITIONS",
+        "columns": [
+            {
+                "name": "TIP_UST",
+                "type": "char(2)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "VU_IDENTIFIKATOR",
+                "type": "int",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "RM_OZNAKA",
+                "type": "char(3)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "RM_NAZIV",
+                "type": "varchar(50)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "RM_OPERATIVNO",
+                "type": "bool",
+                "additional_attrs": []
+            }
+        ],
+        "primary_keys": [
+            "TIP_UST",
+            "VU_IDENTIFIKATOR",
+            "RM_OZNAKA"
+        ],
+        "references": [
+            {
+                "name": "EMPLOYEE_ENGAGEMEENT",
+                "reference_keys": [
+                    "TIP_UST,",
+                    "VU_IDENTIFIKATOR,",
+                    "RM_OZNAKA"
+                ],
+                "constraint": "FK_WHO_IS_APPOINTED_AT"
+            },
+            {
+                "name": "HISTORY_DATA",
+                "reference_keys": [
+                    "TIP_UST,",
+                    "VU_IDENTIFIKATOR,",
+                    "RM_OZNAKA"
+                ],
+                "constraint": "FK_WP_HISTORY"
+            }
+        ]
+    }
+]
