@@ -10,10 +10,19 @@ class MetaParser:
         if dump:
             self.dump()
 
-    def get_table(self, table_name: str):
+    def table(self, table_name: str):
         for table in self.tables:
             if table['name'] == table_name:
                 return table
+
+    def columns(self, table_name):
+        return self.table(table_name)['columns']
+
+    def primary_keys(self, table_name):
+        return self.table(table_name)['primary_keys']
+
+    def references(self, table_name):
+        return self.table(table_name)['references']
 
     def dump(self, file_name='meta'):
         with open(f'./{file_name}.json', 'w') as file:
