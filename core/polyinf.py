@@ -1,4 +1,5 @@
 from .foundation.managers.plugin_manager import PluginManager
+from .foundation.managers.auth_manager import AuthManager
 from .support.foundation.manager import Manager
 from app.application import Application
 from core.util.loggers.simple_logger import SimpleLogger
@@ -12,7 +13,8 @@ class PolyInf:
 
     def __managers(self) -> list[Manager]:
         return [
-            PluginManager(self.app)
+            PluginManager(self.app),
+            AuthManager(self.app),
         ]
 
     def start(self) -> int:
