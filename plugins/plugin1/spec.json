@@ -1,0 +1,7 @@
+{
+    "name": "TestPlugin",
+    "author": "Omar Iriskic",
+    "description": "Short description",
+    "version": "1.0.0",
+    "release_notes": "This is test plugin"
+}

@@ -1,6 +1,13 @@
 docs/Komponente-za-podrsku-softverskom-sistemu-PolyInf.asta.lock
 !meta/create-migration.sql
 
+# Config paths
+env.json
+
+logs/
+
+__pycache__/
+
 # Compiled source #
 ###################
 *.com
