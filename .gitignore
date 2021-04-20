@@ -8,6 +8,9 @@ logs/
 
 __pycache__/
 
+plugins/plugin1
+plugins/plugin2
+
 # Compiled source #
 ###################
 *.com
