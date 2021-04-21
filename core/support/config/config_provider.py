@@ -27,7 +27,10 @@ class ConfigProvider:
         return self.config['pluginsPath']
 
     def logs_path(self) -> str:
-        return self.path(self.config['logsPath'])
+        path = self.path(self.config['logsPath'])
+        if not os.path.exists(path):
+            os.makedirs(path)
+        return path
 
     def mysql_log_path(self) -> str:
         return f'{self.logs_path()}/mysql-log.txt'
