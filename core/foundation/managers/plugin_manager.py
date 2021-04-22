@@ -34,7 +34,6 @@ class PluginManager(Manager):
                 spec_path = os.path.join(package_path, 'spec.json')
                 with open(spec_path, 'r') as plugin_spec_file:
                     spec = load(plugin_spec_file)
-                    # plugin_path = "/".join(plugin_path.split("/")[-3:-1])
                     plugin_module = import_module(
                         plugin_path.replace(os.path.sep, '.').rstrip('.py'))
                     class_members = getmembers(plugin_path, isclass)
@@ -47,7 +46,7 @@ class PluginManager(Manager):
         return self.deactivate(plugin)
 
     def get(self, name: str) -> Plugin:
-        return list(filter(lambda x: x._plugin_specification.name() == name, self._plugins))[0]
+        return list(filter(lambda x: x.name() == name, self._plugins.values()))[0]
 
     def get_all(self):
         return self._plugins.values()

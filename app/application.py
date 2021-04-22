@@ -26,6 +26,11 @@ class Application(Container):
         self.log(
             f'{ConfigProvider().name()} initialized. Version: {self.version}')
 
+        main_plugin = self.get(
+            'managers', 'PluginManager').get('MainPlugin')
+
+        self.set_central_widget(main_plugin.widget())
+
         exit(self._app.exec_())
 
     def app(self) -> QtWidgets.QApplication:

@@ -19,8 +19,8 @@ class PolyInf:
         ]
 
     def start(self) -> int:
-        self.__boot_managers()
         self.__bind()
+        self.__boot_managers()
         self.app.start()
 
     def __boot_managers(self) -> None:
