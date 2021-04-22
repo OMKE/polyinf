@@ -11,4 +11,5 @@ class SimpleLogger(Logger):
         with open(self.path, 'a') as log_file:
             log_file.write(f'{self.timestamp()} - {message} \n')
 
-        self.status_bar.showMessage(message, 3000)
+        if self.status_bar:
+            self.status_bar.showMessage(message, 3000)
