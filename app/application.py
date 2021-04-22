@@ -30,3 +30,6 @@ class Application(Container):
 
     def app(self) -> QtWidgets.QApplication:
         return self._app
+
+    def set_central_widget(self, widget):
+        self.main.setCentralWidget(widget)
