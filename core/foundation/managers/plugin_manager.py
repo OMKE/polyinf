@@ -1,12 +1,12 @@
-from core.support.foundation.manager import Manager
-from core.plugin.plugin_guards import PluginGuards
-from json import load
+import os
 from importlib import import_module
 from inspect import getmembers, isclass
-from core.plugin.plugin_specification import PluginSpecification
+from json import load
+
 from core.plugin.plugin import Plugin
-from core.support.config.config_provider import ConfigProvider
-import os
+from core.plugin.plugin_guards import PluginGuards
+from core.plugin.plugin_specification import PluginSpecification
+from core.support.foundation.manager import Manager
 
 
 class PluginManager(Manager):
@@ -29,12 +29,14 @@ class PluginManager(Manager):
             self._plugins_middleware[plugin.name()] = plugin.guard()
 
     def set_central_widget(self, name=None):
+        auth_pipeline = self.get_pipeline('auth')
+        user = self.app.get('managers', 'AuthManager').user()
         for middleware in self._plugins_middleware.items():
-            if middleware[1] != self.get_pipeline('auth') and not self.app.get('managers', 'AuthManager').user():
+            if middleware[1] != auth_pipeline and not user:
                 plugin_name = middleware[0]
                 plugin = self.get(plugin_name)
                 self.app.set_central_widget(plugin.widget())
-            elif middleware[1] == self.get_pipeline('auth') and self.app.get('managers', 'AuthManager').user() and name:
+            elif middleware[1] == auth_pipeline and user and name:
                 plugin_name = middleware[0]
                 plugin = self.get(plugin_name)
                 self.app.set_central_widget(plugin.widget())
