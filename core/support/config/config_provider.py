@@ -21,7 +21,13 @@ class ConfigProvider:
         return os.path.join(sys.path[0], file_name)
 
     def environment(self) -> str:
-        return self.config['env']
+        return self.get_config('env')
+
+    def development(self) -> bool:
+        return self.environment() == 'DEV'
+
+    def production(self) -> bool:
+        return self.environment() == 'PROD'
 
     def name(self) -> str:
         return self.config['name']
@@ -44,5 +50,15 @@ class ConfigProvider:
     def arango_log_path(self) -> str:
         return f'{self.logs_path()}/arango-log.txt'
 
-    def database_config_path(self) -> str:
-        return self.config['databaseConfigPath']
+    def env_config(self) -> str:
+        return self.config['env']
+
+    def get_config(self, connection_key):
+        with open(self.env_config(), 'r') as file:
+            return load(file)[connection_key]
+
+    def mysql(self):
+        return self.get_config('mysql')
+
+    def mongo(self):
+        return self.get_config('mongo')

@@ -19,6 +19,7 @@ class Main(Plugin):
         widget = QLabel()
         widget.setAlignment(Qt.AlignCenter)
         widget.setText('Auth plugin')
+
         return widget
 
     def guard(self) -> str:

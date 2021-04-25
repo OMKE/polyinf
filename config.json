@@ -1,6 +1,6 @@
 {
     "name": "PolyInf",
     "pluginsPath": "plugins",
-    "databaseConfigPath": "env.json",
+    "env": "env.json",
     "logsPath": "logs"
 }

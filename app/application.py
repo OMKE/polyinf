@@ -37,15 +37,17 @@ class Application(Container):
         self.get('managers', 'PluginManager').set_central_widget(plugin.widget())
 
     def start(self) -> None:
-        if self.get_arg('--login'):
-            role = self.get_arg('--role')
-            if role:
-                self.get('managers', 'AuthManager').force_login(role)
-            else:
-                self.get('managers', 'AuthManager').force_login()
-        # Bind self to window so we have a refference to the container
+        if ConfigProvider().development():
+            if self.get_arg('--login'):
+                role = self.get_arg('--role')
+                if role:
+                    self.get('managers', 'AuthManager').force_login(role)
+                else:
+                    self.get('managers', 'AuthManager').force_login()
+
         window = self.main_window()
         window.show()
+
         # Attach statusBar to SimpleLogger
         self.get('loggers', 'SimpleLogger').attach(self.main.get_status_bar())
 
