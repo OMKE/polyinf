@@ -5,12 +5,12 @@ class User:
     ADMIN = 'admin'
     USER = 'user'
 
-    def __init__(self, username: str, name: str, role: str):
-        self.username = username
+    def __init__(self, email: str, name: str, role: str):
+        self.email = email
         self.name = name
         self.__set_role(role)
 
     def __set_role(self, role):
-        if role != User.ADMIN or role != User.USER:
+        if role != User.ADMIN and role != User.USER:
             raise ValueError('Role must be either `admin` or `user`')
         self.role = role

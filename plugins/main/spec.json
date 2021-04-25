@@ -1,7 +1,8 @@
 {
     "name": "MainPlugin",
-    "author": "Omar Iriskic",
-    "description": "Master plugin",
+    "clientName": "Home",
+    "author": "Zeljana Vulovic",
+    "description": "Home plugin",
     "version": "0.0.1",
     "release_notes": ""
 }

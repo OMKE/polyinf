@@ -15,3 +15,7 @@ class PluginInterface(ABC):
     @abstractmethod
     def widget(self, parent=None):
         raise NotImplementedError('Method must be implemented by a subclass')
+
+    @abstractmethod
+    def guard(self) -> str:
+        raise NotImplementedError('Method must be implemented by a subclass')

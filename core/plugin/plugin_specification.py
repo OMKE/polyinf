@@ -11,6 +11,9 @@ class PluginSpecification:
     def name(self) -> str:
         return self._spec.get('name', '')
 
+    def client_name(self) -> str:
+        return self._spec.get('clientName', '')
+
     def author(self) -> str:
         return self._spec.get('author', '')
 

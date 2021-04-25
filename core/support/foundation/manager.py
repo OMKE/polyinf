@@ -1,5 +1,6 @@
 from abc import ABC, abstractmethod
 from collections.abc import Callable
+from core.support.config.config_provider import ConfigProvider
 
 
 class Manager(ABC):
@@ -8,6 +9,7 @@ class Manager(ABC):
         self.app = app
         self.booting_callbacks = []
         self.booted_callbacks = []
+        self.config_provider = ConfigProvider()
 
     @abstractmethod
     def boot(self) -> None:

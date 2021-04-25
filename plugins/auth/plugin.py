@@ -18,9 +18,9 @@ class Main(Plugin):
     def widget(self, parent=None):
         widget = QLabel()
         widget.setAlignment(Qt.AlignCenter)
-        widget.setText('Home plugin')
+        widget.setText('Auth plugin')
         return widget
 
     def guard(self) -> str:
-        return PluginGuards.AUTH
+        return PluginGuards.NONE
 

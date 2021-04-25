@@ -1,5 +1,6 @@
 from core.support.foundation.manager import Manager
 from core.plugin.auth_interface import AuthInterface
+from core.models.user import User
 
 
 class AuthManager(Manager):
@@ -13,7 +14,7 @@ class AuthManager(Manager):
         pass
 
     def logged_in(self) -> bool:
-        return self.loggedIn
+        return self._loggedIn
 
     def user(self):
         return self._user
@@ -22,6 +23,11 @@ class AuthManager(Manager):
         self._loggedIn = True
         self._user = auth_interface.user()
         self.app.log(f'User: {self._user.name} logged in.')
+
+    # Method only for development purposes
+    def force_login(self):
+        self._loggedIn = True
+        self._user = User("dev@polyinf.com", 'dev', 'user')
 
     def logout(self):
         self.app.log(f'User: {self._user.name} logged out.')

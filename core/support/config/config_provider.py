@@ -20,6 +20,9 @@ class ConfigProvider:
     def path(self, file_name) -> str:
         return os.path.join(sys.path[0], file_name)
 
+    def environment(self) -> str:
+        return self.config['env']
+
     def name(self) -> str:
         return self.config['name']
 
