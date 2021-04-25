@@ -25,9 +25,9 @@ class AuthManager(Manager):
         self.app.log(f'User: {self._user.name} logged in.')
 
     # Method only for development purposes
-    def force_login(self):
+    def force_login(self, role='user'):
         self._loggedIn = True
-        self._user = User("dev@polyinf.com", 'dev', 'user')
+        self._user = User("dev@polyinf.com", 'dev', role)
 
     def logout(self):
         self.app.log(f'User: {self._user.name} logged out.')
