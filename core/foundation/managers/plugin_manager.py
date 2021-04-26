@@ -28,7 +28,7 @@ class PluginManager(Manager):
         for plugin in self.get_all():
             self._plugins_middleware[plugin.name()] = plugin.guard()
 
-    def set_central_widget(self, name=None):
+    def set_central_widget(self, widget=None, name=None):
         auth_pipeline = self.get_pipeline('auth')
         user = self.app.get('managers', 'AuthManager').user()
         for middleware in self._plugins_middleware.items():
@@ -36,10 +36,8 @@ class PluginManager(Manager):
                 plugin_name = middleware[0]
                 plugin = self.get(plugin_name)
                 self.app.set_central_widget(plugin.widget())
-            elif middleware[1] == auth_pipeline and user and name:
-                plugin_name = middleware[0]
-                plugin = self.get(plugin_name)
-                self.app.set_central_widget(plugin.widget())
+            elif middleware[1] == auth_pipeline and user and widget:
+                self.app.set_central_widget(widget)
 
     def get_pipeline(self, name) -> str:
         """
