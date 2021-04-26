@@ -25,7 +25,7 @@ class MetaParser:
         return self.table(table_name)['references']
 
     def dump(self, file_name='meta'):
-        with open(f'./{file_name}.json', 'w') as file:
+        with open(f'meta/{file_name}.json', 'w') as file:
             dump(self.tables, file, ensure_ascii=False, indent=4)
 
     def parse(self):

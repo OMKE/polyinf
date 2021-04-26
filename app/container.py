@@ -7,7 +7,8 @@ class Container(ABC):
     def __init__(self):
         self.container = {
             'loggers': {},
-            'managers': {}
+            'managers': {},
+            'parsers': {}
         }
 
     def bind(self, type_name, instance) -> None:
