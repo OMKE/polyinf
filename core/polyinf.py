@@ -4,7 +4,7 @@ from .support.foundation.manager import Manager
 from app.application import Application
 from core.util.loggers.simple_logger import SimpleLogger
 from typing import List
-
+from meta.meta_parser import MetaParser
 
 class PolyInf:
 
@@ -32,3 +32,4 @@ class PolyInf:
 
     def __bind(self) -> None:
         self.app.bind('loggers', SimpleLogger())
+        self.app.bind('parsers', MetaParser('meta/create-migration.sql', True))

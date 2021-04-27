@@ -57,6 +57,9 @@ class ConfigProvider:
         with open(self.env_config(), 'r') as file:
             return load(file)[connection_key]
 
+    def app_key(self):
+        return self.get_config('key')
+
     def mysql(self):
         return self.get_config('mysql')
 
