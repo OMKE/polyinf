@@ -4420,5 +4420,61 @@
                 "constraint": "FK_WP_HISTORY"
             }
         ]
+    },
+    {
+        "name": "(",
+        "columns": [
+            {
+                "name": "USER_ID",
+                "type": "int",
+                "additional_attrs": [
+                    "not",
+                    "null",
+                    "AUTO_INCREMENT",
+                    "PRIMARY",
+                    "KEY"
+                ]
+            },
+            {
+                "name": "USER_FIRST_NAME",
+                "type": "varchar(35)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "USER_LAST_NAME",
+                "type": "varchar(35)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "USER_EMAIL",
+                "type": "varchar(35)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "USER_PASSWORD",
+                "type": "varchar(255)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            },
+            {
+                "name": "USER_ROLE",
+                "type": "varchar(10)",
+                "additional_attrs": [
+                    "not",
+                    "null"
+                ]
+            }
+        ]
     }
 ]
