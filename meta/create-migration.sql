@@ -3,6 +3,7 @@
 /* Created on:     4/4/2021 10:31:26 AM                         */
 /*==============================================================*/
 
+drop table if exists USERS;
 
 drop table if exists ACT_OF_ORGANIZATION;
 
@@ -1002,6 +1003,19 @@ create table WORK_POSSITIONS
    RM_OPERATIVNO        bool,
    primary key (TIP_UST, VU_IDENTIFIKATOR, RM_OZNAKA)
 );
+
+/*==============================================================*/
+/* Table: USERS                                   */
+/*==============================================================*/
+create table USERS (
+  USER_ID               int not null AUTO_INCREMENT PRIMARY KEY,
+  USER_FIRST_NAME       varchar(35) not null,
+  USER_LAST_NAME        varchar(35) not null,
+  USER_EMAIL            varchar(35) not null,
+  USER_PASSWORD         varchar(255) not null,
+  USER_ROLE             varchar(10) not null
+);
+
 
 alter table ACT_OF_ORGANIZATION add constraint FK_APPROVED_BY foreign key (TIP_UST, VU_IDENTIFIKATOR, OJ_IDENTIFIKATOR)
       references ORGANIZATIONAL_UNIT (TIP_UST, VU_IDENTIFIKATOR, OJ_IDENTIFIKATOR) on delete restrict on update restrict;
