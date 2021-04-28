@@ -3,6 +3,12 @@
 /* Created on:     4/4/2021 10:31:26 AM                         */
 /*==============================================================*/
 
+DROP PROCEDURE IF EXISTS `create_user`
+
+DROP PROCEDURE IF EXISTS `login_user`
+
+DROP PROCEDURE IF EXISTS `show_users_columns`
+
 drop table if exists USERS;
 
 drop table if exists ACT_OF_ORGANIZATION;
@@ -130,6 +136,8 @@ drop table if exists TYPES_OF_INSTITUTIONS;
 drop table if exists TYPE_OF_BLOCK;
 
 drop table if exists WORK_POSSITIONS;
+
+drop table if exists USERS;
 
 /*==============================================================*/
 /* Table: ACT_OF_ORGANIZATION                                   */
@@ -1007,7 +1015,8 @@ create table WORK_POSSITIONS
 /*==============================================================*/
 /* Table: USERS                                   */
 /*==============================================================*/
-create table USERS (
+create table USERS
+(
   USER_ID               int not null AUTO_INCREMENT PRIMARY KEY,
   USER_FIRST_NAME       varchar(35) not null,
   USER_LAST_NAME        varchar(35) not null,
@@ -1314,3 +1323,27 @@ alter table STUDENT___PERSONAL_DATA add constraint FK_STUDY_AT foreign key (TIP_
 alter table WORK_POSSITIONS add constraint FK_WORK_POSSITIONS foreign key (TIP_UST, VU_IDENTIFIKATOR)
       references HIGH_EDUCATION_INSTITUTION (TIP_UST, VU_IDENTIFIKATOR) on delete restrict on update restrict;
 
+
+-- PROCEDURES
+DELIMITER ;;
+CREATE PROCEDURE `create_user`(IN user_first_name varchar(255), IN user_last_name varchar(255), IN user_email varchar(255), IN user_password varchar(255))
+BEGIN
+INSERT INTO users (USER_FIRST_NAME, USER_LAST_NAME, USER_EMAIL, USER_PASSWORD, USER_ROLE)
+VALUES (user_first_name, user_last_name, user_email, user_password, "user");
+END ;;
+DELIMITER ;
+
+DELIMITER ;;
+CREATE PROCEDURE `login_user`(IN user_email varchar(255), IN user_password varchar(255))
+BEGIN
+SELECT * FROM users WHERE (USER_EMAIL = user_email AND USER_PASSWORD = user_password) LIMIT 1;
+END ;;
+DELIMITER ;
+
+DELIMITER ;;
+CREATE PROCEDURE `show_users_columns`()
+BEGIN
+SHOW COLUMNS FROM users;
+END ;;
+DELIMITER ;
+--

@@ -1,7 +1,33 @@
 [
     {
-        "name": "ACT_OF_ORGANIZATION",
         "columns": [
+            {
+                "name": "DROP",
+                "type": "PROCEDURE",
+                "additional_attrs": [
+                    "IF",
+                    "EXISTS",
+                    "`create_user`"
+                ]
+            },
+            {
+                "name": "DROP",
+                "type": "PROCEDURE",
+                "additional_attrs": [
+                    "IF",
+                    "EXISTS",
+                    "`login_user`"
+                ]
+            },
+            {
+                "name": "DROP",
+                "type": "PROCEDURE",
+                "additional_attrs": [
+                    "IF",
+                    "EXISTS",
+                    "`show_users_columns`"
+                ]
+            },
             {
                 "name": "TIP_UST",
                 "type": "char(2)",
@@ -48,6 +74,7 @@
                 ]
             }
         ],
+        "name": "ACT_OF_ORGANIZATION",
         "primary_keys": [
             "TIP_UST",
             "VU_IDENTIFIKATOR",
@@ -4422,7 +4449,7 @@
         ]
     },
     {
-        "name": "(",
+        "name": "USERS",
         "columns": [
             {
                 "name": "USER_ID",
