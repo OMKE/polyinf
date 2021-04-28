@@ -50,3 +50,11 @@ def register_user(self, first_name, last_name, email, password):
     self.email.setText("")
     self.password.setText("")
     self.current_connection.commit()
+
+def login_user(self, email, password):
+    hashed_password = hashlib.sha256(password.encode()).hexdigest()
+
+    self.current_cursor.callproc("login_user", (email, hashed_password))
+    self.email.setText("")
+    self.password.setText("")
+    self.current_connection.commit()
