@@ -18,8 +18,10 @@ class Main(Plugin):
         self.app.log(f'{self.name()} deactivated')
 
     def widget(self, parent=None):
-        # widget = RegistrationForm()
-        widget = LoginForm()
+        if self.current_view == "login":
+            widget = LoginForm()
+        else:
+            widget = RegistrationForm()
         
         return widget
 

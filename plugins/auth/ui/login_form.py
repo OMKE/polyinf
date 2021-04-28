@@ -2,14 +2,16 @@ from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
 from plugins.auth.utils.db_utils import connection, use_database, get_all_columns, register_user, login_user
+from core.support.config.config_provider import ConfigProvider
 
 class LoginForm(QDialog):
     def __init__(self):
         super().__init__()
         self.current_connection = None
         self.current_cursor = None
-        connection("localhost", "root", "root", self)
-        use_database("polyinf_db", self)
+        mysql_info = ConfigProvider().mysql()
+        connection(mysql_info["host"], mysql_info["user"], mysql_info["password"], self)
+        use_database(mysql_info["database"], self)
         self.initiate_view()
     
     def initiate_view(self):
