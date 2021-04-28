@@ -1334,9 +1334,9 @@ END ;;
 DELIMITER ;
 
 DELIMITER ;;
-CREATE PROCEDURE `login_user`(IN user_email varchar(255), IN user_password varchar(255))
+CREATE PROCEDURE `login_user`(IN email varchar(255), IN password varchar(255))
 BEGIN
-SELECT * FROM users WHERE (USER_EMAIL = user_email AND USER_PASSWORD = user_password) LIMIT 1;
+SELECT * FROM users WHERE USER_EMAIL = email AND USER_PASSWORD = password;
 END ;;
 DELIMITER ;
 

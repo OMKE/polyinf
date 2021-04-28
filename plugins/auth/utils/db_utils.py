@@ -52,9 +52,14 @@ def register_user(self, first_name, last_name, email, password):
     self.current_connection.commit()
 
 def login_user(self, email, password):
+    logged_user = None;
     hashed_password = hashlib.sha256(password.encode()).hexdigest()
-
     self.current_cursor.callproc("login_user", (email, hashed_password))
+    self.current_connection.commit()
+
+    for i in self.current_cursor.stored_results():
+        logged_user = i.fetchall()
+
     self.email.setText("")
     self.password.setText("")
-    self.current_connection.commit()
+    return logged_user

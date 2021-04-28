@@ -45,5 +45,11 @@ class LoginForm(QDialog):
         email_value = self.email.text()
         password_value = self.password.text()
         if len(email_value) > 0 and len(password_value) > 0:
-            login_user(self, email_value, password_value)
-            label_value = self.label.setText('Successful login!')
+            logged_user = login_user(self, email_value, password_value)
+            
+            if logged_user:
+                label_value = self.label.setText('Successful login!')
+            else:
+                label_value = self.label.setText('Unsuccessful login!')
+
+            return logged_user
