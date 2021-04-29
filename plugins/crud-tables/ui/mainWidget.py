@@ -1,6 +1,12 @@
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
+from .ui_getData.getData_widget import GetDataWidget
+
+
+def getData():
+    getData_widget = GetDataWidget()
+    return getData_widget
 
 
 class MainWidget(QWidget):
@@ -10,18 +16,21 @@ class MainWidget(QWidget):
 
     def initUI(self):
         self.verticalLayoutWidget = QWidget(self)
-        self.verticalLayoutWidget.setGeometry(QRect(69, 29, 501, 381))
+        self.verticalLayoutWidget.setGeometry(QRect(50, 50, 350, 350))
         self.verticalLayoutWidget.setObjectName("verticalLayoutWidget")
         self.verticalLayout = QVBoxLayout(self.verticalLayoutWidget)
         self.verticalLayout.setSizeConstraint(QLayout.SetDefaultConstraint)
         self.verticalLayout.setContentsMargins(20, 20, 20, 20)
         self.verticalLayout.setObjectName("verticalLayout")
+
         self.label = QLabel(self.verticalLayoutWidget)
         self.label.setAlignment(Qt.AlignCenter)
         self.label.setObjectName("label")
+
         self.verticalLayout.addWidget(self.label)
         self.addDataBtn = QPushButton(self.verticalLayoutWidget)
         self.addDataBtn.setObjectName("addDataBtn")
+
         self.verticalLayout.addWidget(self.addDataBtn)
         self.addNewTableBtn = QPushButton(self.verticalLayoutWidget)
         self.addNewTableBtn.setObjectName("addNewTableBtn")
@@ -35,6 +44,8 @@ class MainWidget(QWidget):
         self.getDataBtn = QPushButton(self.verticalLayoutWidget)
         self.getDataBtn.setObjectName("getDataBtn")
         self.verticalLayout.addWidget(self.getDataBtn)
+        self.getDataBtn.clicked.connect(getData)
+
         self.retranslateUi(self)
         self.show()
 
@@ -42,7 +53,7 @@ class MainWidget(QWidget):
         _translate = QCoreApplication.translate
         mainWidget.setWindowTitle(_translate("mainWidget", "Form"))
         self.label.setText(_translate(
-            "mainWidget", "Dobrodošli na rad sa bazon"))
+            "mainWidget", "Dobrodošli na rad sa bazom"))
         self.addDataBtn.setText(_translate("mainWidget", "Dodavanje podataka"))
         self.addNewTableBtn.setText(_translate(
             "mainWidget", "Dodavanje nove tabele"))
