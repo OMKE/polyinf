@@ -64,6 +64,8 @@ class Application(Container):
     def set_central_widget(self, widget):
         self.main.setCentralWidget(widget)
 
+    def get_central_widget(self):
+        return self.main.centralWidget()
 
     def parse_args(self, args):
         args = [{'name': arg.split("=")[0], "value": arg.split("=")[1]} for arg in args[1:] if "=" in arg]

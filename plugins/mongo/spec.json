@@ -1,0 +1,8 @@
+{
+    "name": "MongoPlugin",
+    "clientName": "Document",
+    "author": "Omar Iriskic",
+    "description": "Mongo plugin for creating mongo documents based on existing database",
+    "version": "0.0.1",
+    "release_notes": ""
+}
