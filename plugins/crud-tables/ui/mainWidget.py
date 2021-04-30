@@ -6,7 +6,7 @@ from .ui_getData.getData_widget import GetDataWidget
 
 def getData():
     getData_widget = GetDataWidget()
-    return getData_widget
+    getData_widget.exec_()
 
 
 class MainWidget(QWidget):
