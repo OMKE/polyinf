@@ -5,8 +5,9 @@ from plugins.auth.utils.db_utils import connection, use_database, get_all_column
 from core.support.config.config_provider import ConfigProvider
 
 class LoginForm(QDialog):
-    def __init__(self):
+    def __init__(self, view):
         super().__init__()
+        self.change_view = view
         self.current_connection = None
         self.current_cursor = None
         mysql_info = ConfigProvider().mysql()
@@ -40,7 +41,7 @@ class LoginForm(QDialog):
 
     @pyqtSlot()
     def register_event(self):
-        print("TRIGGERED")
+        self.change_view()
 
     @pyqtSlot()
     def login_event(self):

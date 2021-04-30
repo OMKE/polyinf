@@ -17,11 +17,18 @@ class Main(Plugin):
     def deactivate(self):
         self.app.log(f'{self.name()} deactivated')
 
+    def set_register_view(self):
+        self.current_view = "register"
+
+    def set_login_view(self):
+        self.current_view = "login"
+
     def widget(self, parent=None):
+        print(self.current_view)
         if self.current_view == "login":
-            widget = LoginForm()
+            widget = LoginForm(self.set_register_view)
         else:
-            widget = RegistrationForm()
+            widget = RegistrationForm(self.set_login_view)
         
         return widget
 
