@@ -61,6 +61,8 @@ class MetaParser:
                     continue
                 if "alter table" not in line:
                     field_line = list(filter(len, line.split(" ")))
+                    if "PROCEDURES" in field_line:
+                        break
                     try:
                         column_name = field_line[0]
                         column_type = field_line[1]

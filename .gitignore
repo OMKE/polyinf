@@ -65,6 +65,7 @@ Homestead.yaml
 npm-debug.log
 yarn-error.log
 ./vagrant
+/env
 
 # IDEs and editors
 /.idea
