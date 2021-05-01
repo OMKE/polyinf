@@ -1,13 +1,21 @@
 import mysql.connector
 from core.support.config.config_provider import ConfigProvider
+from .connector import Connector
 
-class Database:
+class Database(Connector):
 
     def __init__(self):
+        super().__init__()
         self.connection = self.connect()
 
-    def cursor(self):
+    def connection(self):
+        return self.connection()
+
+    def cursor(self, dictionary=False):
+        if dictionary:
+            return self.connection.cursor(dictionary=True)
         return self.connection.cursor()
+
 
     def connect(self):
         config = ConfigProvider().mysql()
