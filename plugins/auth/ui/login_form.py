@@ -2,14 +2,17 @@ from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
 from plugins.auth.utils.db_utils import connection, use_database, get_all_columns, register_user, login_user
+from core.support.config.config_provider import ConfigProvider
 
 class LoginForm(QDialog):
-    def __init__(self):
+    def __init__(self, view):
         super().__init__()
+        self.change_view = view
         self.current_connection = None
         self.current_cursor = None
-        connection("localhost", "root", "root", self)
-        use_database("polyinf_db", self)
+        mysql_info = ConfigProvider().mysql()
+        connection(mysql_info["host"], mysql_info["user"], mysql_info["password"], self)
+        use_database(mysql_info["database"], self)
         self.initiate_view()
     
     def initiate_view(self):
@@ -38,12 +41,18 @@ class LoginForm(QDialog):
 
     @pyqtSlot()
     def register_event(self):
-        print("TRIGGERED")
+        self.change_view()
 
     @pyqtSlot()
     def login_event(self):
         email_value = self.email.text()
         password_value = self.password.text()
         if len(email_value) > 0 and len(password_value) > 0:
-            login_user(self, email_value, password_value)
-            label_value = self.label.setText('Successful login!')
+            logged_user = login_user(self, email_value, password_value)
+            print(logged_user)
+            if logged_user:
+                label_value = self.label.setText('Successful login!')
+            else:
+                label_value = self.label.setText('Unsuccessful login!')
+
+            return logged_user

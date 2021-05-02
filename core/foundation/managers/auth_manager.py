@@ -23,6 +23,7 @@ class AuthManager(Manager):
         self._loggedIn = True
         self._user = auth_interface.user()
         self.app.log(f'User: {self._user.name} logged in.')
+        self.app.refresh()
 
     # Method only for development purposes
     def force_login(self, role='user'):
