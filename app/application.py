@@ -17,24 +17,42 @@ class Application(Container):
 
     def main_window(self) -> MainWindow:
         self.main = MainWindow(self)
-        toolbar = self.main.addToolBar('Plugins')
-        toolbar.setMovable(False)
-        for action in self.set_toolbar_actions():
-            toolbar.addAction(action)
+        self.toolbar = self.main.addToolBar('Plugins')
+        self.toolbar.setMovable(False)
+        self.add_toolbar_actions(self.get_toolbar_actions())
         return self.main
 
-    def set_toolbar_actions(self):
+    def add_toolbar_actions(self, actions):
+        for action in actions:
+            self.toolbar.addAction(action['action'])
+
+    def get_toolbar_actions(self):
         actions = []
         for plugin in self.get('managers', 'PluginManager').get_all():
             if self.get('managers', 'AuthManager').user() and plugin.name() == 'AuthPlugin':
                 continue
             action = QAction(QIcon(plugin.icon()), f'&{plugin.client_name()}', self.main)
             action.triggered.connect(lambda state, x=plugin: self.connect_action(x))
-            actions.append(action)
+            actions.append({
+                "plugin": plugin.name(),
+                "action": action
+            })
         return actions
+
+    def refresh_actions(self):
+        action = None
+        for i, v in enumerate(self.toolbar.actions()):
+            if i == 0:
+                action = v
+        action.setDisabled(True)
+
+
 
     def connect_action(self, plugin):
         self.get('managers', 'PluginManager').set_central_widget(plugin.widget())
+
+    def refresh(self):
+        self.refresh_actions()
 
     def start(self) -> None:
         if ConfigProvider().development():

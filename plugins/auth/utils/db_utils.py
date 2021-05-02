@@ -41,18 +41,31 @@ def get_all_columns(self):
     return columns_sorted
 
 def register_user(self, first_name, last_name, email, password):
+    self.current_cursor.execute("select * from USERS")
+
+    users = self.current_cursor.fetchall()
+    count = len(users)
+
 
     hashed_password = hashlib.sha256(password.encode()).hexdigest()
-
     self.current_cursor.callproc("create_user", (first_name, last_name, email, hashed_password))
-    self.first_name.setText("")
-    self.last_name.setText("")
-    self.email.setText("")
-    self.password.setText("")
+    self.first_name_input.setText("")
+    self.last_name_input.setText("")
+    self.email_input_register.setText("")
+    self.password_input_register.setText("")
     self.current_connection.commit()
 
+    self.current_cursor.execute("select * from USERS")
+
+    users = self.current_cursor.fetchall()
+    new_count = len(users)
+    if new_count > count:
+        return True
+    return False
+
+
 def login_user(self, email, password):
-    logged_user = None;
+    logged_user = None
     hashed_password = hashlib.sha256(password.encode()).hexdigest()
     self.current_cursor.callproc("login_user", (email, hashed_password))
     self.current_connection.commit()
@@ -60,6 +73,6 @@ def login_user(self, email, password):
     for i in self.current_cursor.stored_results():
         logged_user = i.fetchall()
 
-    self.email.setText("")
-    self.password.setText("")
+    self.email_input.setText("")
+    self.password_input.setText("")
     return logged_user
