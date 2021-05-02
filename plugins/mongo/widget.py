@@ -90,7 +90,7 @@ class MainWidget:
             webbrowser.open_new_tab(f'file://{self.last_file}')
         else:
             self.html_view.load(QUrl().fromLocalFile(self.last_file))
-            self.html_view.show()
+            self.html_view.showMaximized()
 
     def get_local_documents(self):
         path = self.get_document_path()
@@ -103,7 +103,7 @@ class MainWidget:
             webbrowser.open_new_tab(f'file://{path}')
         else:
             self.html_view.load(QUrl().fromLocalFile(path))
-            self.html_view.show()
+            self.html_view.showMaximized()
 
     def save_document_as_html(self, template_output, path):
         self.last_file = path
@@ -126,6 +126,9 @@ class MainWidget:
         if not os.path.exists(path):
             os.makedirs(path)
         return path
+
+    def get_excluded_procedures(self):
+        return ConfigProvider().get_config('excludedDirectives')
 
 
     def save_document_data(self):

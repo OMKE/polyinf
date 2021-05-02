@@ -23,7 +23,7 @@ class MainWidgetUI:
         self.documents_list = QListWidget(self.main)
         self.documents_list.itemDoubleClicked.connect(self.document_clicked)
         self.sync_document_list()
-        self.documents_list.setGeometry(QRect(30, 300, 350, 201))
+        self.documents_list.setGeometry(QRect(30, 300, 350, 600))
         self.documents_list.setObjectName("document_list")
 
         # Procedures text
@@ -157,8 +157,10 @@ class MainWidgetUI:
         return self.main
 
     def fill_procedure_list(self, names: list):
+        excluded = self.parent.get_excluded_procedures()
         for name in names:
-            self.procedures_list.addItem(name)
+            if name not in excluded:
+                self.procedures_list.addItem(name)
 
     def sync_document_list(self):
         self.documents_list.clear()
