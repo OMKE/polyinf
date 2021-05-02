@@ -28,6 +28,7 @@ class MainWidget:
         self.table_columns = []
         self.last_file = None
         self.html_view = QtWebEngineWidgets.QWebEngineView()
+        self.open_in_browser = False
 
 
     def widget(self):
@@ -56,6 +57,9 @@ class MainWidget:
     def set_document_name(self, name):
         self.document_name = name
 
+    def check_open_in_browser(self, value):
+        self.open_in_browser = value
+
     def get_document(self):
         if self.data is not None:
             name = self.document_name if self.document_name != '' else self.procedure['name']
@@ -82,9 +86,11 @@ class MainWidget:
 
 
     def show_html_doc(self):
-        webbrowser.open_new_tab(f'file://{self.last_file}')
-        # self.html_view.load(QUrl().fromLocalFile(self.last_file))
-        # self.html_view.show()
+        if self.open_in_browser:
+            webbrowser.open_new_tab(f'file://{self.last_file}')
+        else:
+            self.html_view.load(QUrl().fromLocalFile(self.last_file))
+            self.html_view.show()
 
     def get_local_documents(self):
         path = self.get_document_path()
@@ -93,7 +99,11 @@ class MainWidget:
 
     def open_document(self, file_name):
         path = f'{self.get_document_path()}{os.sep}{file_name}'
-        webbrowser.open_new_tab(f'file://{path}')
+        if self.open_in_browser:
+            webbrowser.open_new_tab(f'file://{path}')
+        else:
+            self.html_view.load(QUrl().fromLocalFile(path))
+            self.html_view.show()
 
     def save_document_as_html(self, template_output, path):
         self.last_file = path

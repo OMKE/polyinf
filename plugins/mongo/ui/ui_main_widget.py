@@ -12,6 +12,7 @@ class MainWidgetUI:
         self.main.setObjectName("Mongo Widget")
         self.main.resize(903, 672)
         self.current_procedure = {}
+        self.open_in_browser = False
 
         self.procedures_list = QListWidget(self.main)
         self.procedures_list.itemClicked.connect(self.procedure_clicked)
@@ -50,6 +51,16 @@ class MainWidgetUI:
         self.call_procedure_btn.setGeometry(QRect(240, 90, 131, 32))
         self.call_procedure_btn.setObjectName("call_procedure_btn")
         self.call_procedure_btn.clicked.connect(self.get_procedure_result)
+
+        # Open in browser checkbox
+        self.open_in_browser_label = QLabel(self.main)
+        self.open_in_browser_label.setGeometry(QRect(240, 150, 131, 16))
+        self.open_in_browser_label.setObjectName("open_in_browser_label")
+
+        self.open_browser_checkbox = QCheckBox(self.main)
+        self.open_browser_checkbox.setGeometry(QRect(240, 160, 40, 40))
+        self.open_browser_checkbox.setObjectName("open_in_browser_checbox")
+        self.open_browser_checkbox.stateChanged.connect(lambda: self.set_in_browser_checkbox(self.open_browser_checkbox))
 
         # Procedure parameter input
         self.procedure_param = QLineEdit(self.main)
@@ -91,6 +102,13 @@ class MainWidgetUI:
         self.document_name_text.setText("Document name")
         self.get_document_btn.setText("Create document")
         self.header_text_documents.setText("Documents")
+        self.open_in_browser_label.setText('Open in browser')
+
+    def set_in_browser_checkbox(self, checkox):
+        if checkox.isChecked():
+            self.parent.check_open_in_browser(True)
+        else:
+            self.parent.check_open_in_browser(False)
 
     def set_table_data(self, columns, data):
         self.procedure_result.setRowCount(0)
