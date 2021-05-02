@@ -6,7 +6,7 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
 from sys import exit
 from core.support.config.config_provider import ConfigProvider
-
+from PyQt5 import QtWebEngineWidgets
 
 class Application(Container):
     def __init__(self, args):
@@ -48,8 +48,8 @@ class Application(Container):
         window = self.main_window()
         window.show()
 
-        # Attach statusBar to SimpleLogger
-        self.get('loggers', 'SimpleLogger').attach(self.main.get_status_bar())
+        # Attach all loggers to Status Bar
+        self.attach_loggers_to_status_bar(self.container['loggers'])
 
         self.log(
             f'{ConfigProvider().name()} initialized. Version: {self.version}')
@@ -64,6 +64,8 @@ class Application(Container):
     def set_central_widget(self, widget):
         self.main.setCentralWidget(widget)
 
+    def get_central_widget(self):
+        return self.main.centralWidget()
 
     def parse_args(self, args):
         args = [{'name': arg.split("=")[0], "value": arg.split("=")[1]} for arg in args[1:] if "=" in arg]
@@ -77,3 +79,6 @@ class Application(Container):
             except KeyError:
                 return None
 
+    def attach_loggers_to_status_bar(self, loggers):
+        for logger in loggers:
+            self.get('loggers', logger).attach(self.main.get_status_bar())
