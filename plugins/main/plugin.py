@@ -3,6 +3,7 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
 from core.plugin.plugin import Plugin
 from core.plugin.plugin_guards import PluginGuards
+from .ui.homepage import Homepage
 
 
 class Main(Plugin):
@@ -16,10 +17,13 @@ class Main(Plugin):
         self.app.log(f'{self.name()} deactivated')
 
     def widget(self, parent=None):
-        widget = QLabel()
-        widget.setAlignment(Qt.AlignCenter)
-        widget.setText('Home plugin')
+        widget = Homepage()
+        widget.set_parent(self)
         return widget
+
+    def logout(self):
+        self.app.get('managers', 'AuthManager').logout()
+        self.app.log('Logged out')
 
     def guard(self) -> str:
         return PluginGuards.AUTH
