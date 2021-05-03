@@ -1,8 +1,8 @@
-from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
 from core.support.config.config_provider import ConfigProvider
-from plugins.auth.utils.db_utils import connection, use_database, get_all_columns, register_user, login_user
+from plugins.auth.utils.db_utils import connection, use_database, register_user, login_user
+
 
 class AuthWidget:
 

@@ -1,5 +1,6 @@
 from abc import ABC
 
+
 class Connector(ABC):
     def __init__(self):
         super(Connector, self).__init__()

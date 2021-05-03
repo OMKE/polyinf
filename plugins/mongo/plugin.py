@@ -1,10 +1,8 @@
-from PyQt5.QtGui import *
-from PyQt5.QtWidgets import *
-from PyQt5.QtCore import *
 from core.plugin.plugin import Plugin
 from core.plugin.plugin_guards import PluginGuards
-from .widget import MainWidget
 from .utils.mongo_logger import MongoPluginLogger
+from .widget import MainWidget
+
 
 class Main(Plugin):
     def __init__(self, app, plugin_specification):

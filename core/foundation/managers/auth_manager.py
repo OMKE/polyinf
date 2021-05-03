@@ -24,6 +24,12 @@ class AuthManager(Manager):
         self._user = auth_interface.user()
         self.app.log(f'User: {self._user.name} logged in.')
         self.app.refresh()
+        self.redirect()
+
+    def redirect(self):
+        for plugin in self.app.get('managers', 'PluginManager').get_all():
+            if plugin.name() == "MainPlugin":
+                self.app.set_central_widget(plugin.widget())
 
     # Method only for development purposes
     def force_login(self, role='user'):

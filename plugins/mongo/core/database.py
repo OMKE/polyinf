@@ -1,6 +1,8 @@
 import mysql.connector
+
 from core.support.config.config_provider import ConfigProvider
 from .connector import Connector
+
 
 class Database(Connector):
 
@@ -16,7 +18,6 @@ class Database(Connector):
             return self.connection.cursor(dictionary=True)
         return self.connection.cursor()
 
-
     def connect(self):
         config = ConfigProvider().mysql()
         return mysql.connector.connect(
@@ -26,7 +27,6 @@ class Database(Connector):
             database=config['database'],
             buffered=True
         )
-
 
     def name(self):
         config = ConfigProvider().mysql()

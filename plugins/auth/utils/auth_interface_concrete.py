@@ -1,6 +1,6 @@
 from core.models.user import User
 from core.plugin.auth_interface import AuthInterface
-from plugins.auth.utils.db_utils import login_user
+
 
 class AuthInterfaceConcrete(AuthInterface):
 

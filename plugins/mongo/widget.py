@@ -1,19 +1,16 @@
+import os
+import webbrowser
+from datetime import datetime
+
+import jinja2
+from PyQt5 import QtWebEngineWidgets
+from PyQt5.QtCore import *
+
+from core.support.config.config_provider import ConfigProvider
 from .core.database import Database
 from .core.mongo import Mongo
 from .ui.ui_main_widget import MainWidgetUI
-from datetime import datetime
-from core.support.config.config_provider import ConfigProvider
-import os
-from pkg_resources import resource_filename, resource_stream
-import jinja2
-import tempfile
-from weasyprint import HTML
 
-from PyQt5.QtGui import *
-from PyQt5.QtWidgets import *
-from PyQt5.QtCore import *
-from PyQt5 import QtWebEngineWidgets
-import webbrowser
 
 class MainWidget:
 

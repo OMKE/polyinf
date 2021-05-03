@@ -1,7 +1,10 @@
-from pymongo import MongoClient
-from .connector import Connector
-from core.support.config.config_provider import ConfigProvider
 from datetime import datetime
+
+from pymongo import MongoClient
+
+from core.support.config.config_provider import ConfigProvider
+from .connector import Connector
+
 
 class Mongo(Connector):
 
@@ -14,9 +17,6 @@ class Mongo(Connector):
 
     def connection(self):
         return self.database
-
-    # def databases(self):
-    #     return self.client.list_database_names()
 
     def collections(self):
         return self.database.list_collection_names()
