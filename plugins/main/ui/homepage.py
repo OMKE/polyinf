@@ -2,16 +2,19 @@ from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
 from plugins.main.utils.db_utils import connection, use_database, get_all_tables, get_table_data
+from core.support.config.config_provider import ConfigProvider
 
 class Homepage(QWidget):
     def __init__(self):
         super().__init__()
         self.current_connection = None
         self.current_cursor = None
-        connection("localhost", "root", "root", self)
-        use_database("polyinf_db", self)
+        config = ConfigProvider().mysql()
+        connection(config['host'], config['user'], config['password'], self)
+        use_database(config['database'], self)
         self.tables = get_all_tables(self)
         self.initiate_view()
+        self.parentContainer = None
 
     def initiate_view(self):
         table_horizontal_layout = QHBoxLayout()
@@ -49,9 +52,13 @@ class Homepage(QWidget):
 
         self.setLayout(table_horizontal_layout)
 
+    def set_parent(self, parent):
+        self.parentContainer = parent
+
     @pyqtSlot()
     def logout_event(self):
-        print("LOGOUT TRIGGERED")
+        if self.parentContainer:
+            self.parentContainer.logout()
 
     @pyqtSlot()
     def selected_table_changed(self):

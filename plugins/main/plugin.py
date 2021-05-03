@@ -18,7 +18,12 @@ class Main(Plugin):
 
     def widget(self, parent=None):
         widget = Homepage()
+        widget.set_parent(self)
         return widget
+
+    def logout(self):
+        self.app.get('managers', 'AuthManager').logout()
+        self.app.log('Logged out')
 
     def guard(self) -> str:
         return PluginGuards.AUTH
