@@ -51,17 +51,15 @@ class GetDataWidget(QDialog):
         self.tableWidget.setColumnCount(len(self.data[0]))
         self.tableWidget.setObjectName("Table data")
         self.tableWidget.setHorizontalHeaderLabels(x for x in self.data[0])
+        self.tableWidget.setEditTriggers(QTableWidget.NoEditTriggers)
 
         row = 0
-
-
         for x in self.data[1]:
             for index, y in enumerate(x):
                 item = QTableWidgetItem()
                 item.setText(str(y))
                 self.tableWidget.setItem(row, index, item)
             row += 1
-
         self.tableWidget.show()
 
     @pyqtSlot()
