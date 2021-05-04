@@ -54,6 +54,7 @@ class GetDataWidget(QDialog):
 
         row = 0
 
+
         for x in self.data[1]:
             for index, y in enumerate(x):
                 item = QTableWidgetItem()
