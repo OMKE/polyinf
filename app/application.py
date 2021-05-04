@@ -40,11 +40,12 @@ class Application(Container):
         return actions
 
     def refresh_actions(self):
-        action = None
+        actions = []
         for i, v in enumerate(self.toolbar.actions()):
-            if i == 0:
-                action = v
-        action.setDisabled(True)
+            if i == 0 or i == 1 and self.get('managers', 'AuthManager').user().get_role() == 'user':
+                actions.append(v)
+        for action in actions:
+            action.setDisabled(True)
 
 
 

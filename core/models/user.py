@@ -1,5 +1,4 @@
 
-
 class User:
 
     ADMIN = 'admin'
@@ -14,3 +13,6 @@ class User:
         if role != User.ADMIN and role != User.USER:
             raise ValueError('Role must be either `admin` or `user`')
         self.role = role
+
+    def get_role(self):
+        return self.role

@@ -1,7 +1,7 @@
 {
     "name": "AuthPlugin",
     "clientName": "Authentication",
-    "author": "Uros Isakovic",
+    "authors": "Uros Isakovic i Jelena Ulemek",
     "description": "",
     "version": "0.0.1",
     "release_notes": ""

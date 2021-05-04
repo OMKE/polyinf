@@ -24,9 +24,6 @@ class AddDataWidget(QDialog):
         self.verticalLayoutWidget.setGeometry(QRect(10, 100, 731, 291))
         self.verticalLayoutWidget.setObjectName("verticalLayoutWidget")
         self.addDataLayout = QVBoxLayout(self.verticalLayoutWidget)
-        # Dobavi informacije o tabeli
-        # Provjeri  koliko ima polja
-        # Prodji for petljom kroz polja i generisi TextLineEdit widget
         self.addDataLayout.setContentsMargins(0, 0, 0, 0)
         self.addDataLayout.setObjectName("addDataLayout")
         self.addBtn = QPushButton(self)
