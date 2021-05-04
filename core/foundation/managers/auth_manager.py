@@ -1,3 +1,5 @@
+import sys
+
 from core.support.foundation.manager import Manager
 from core.plugin.auth_interface import AuthInterface
 from core.models.user import User
@@ -23,6 +25,18 @@ class AuthManager(Manager):
         self._loggedIn = True
         self._user = auth_interface.user()
         self.app.log(f'User: {self._user.name} logged in.')
+        self.app.refresh()
+        self.redirect(login=True)
+
+    def redirect(self, login=True):
+        for plugin in self.app.get('managers', 'PluginManager').get_all():
+            if login:
+                if plugin.name() == "MainPlugin":
+                    self.app.set_central_widget(plugin.widget())
+            else:
+                sys.exit()
+
+
 
     # Method only for development purposes
     def force_login(self, role='user'):
@@ -33,3 +47,5 @@ class AuthManager(Manager):
         self.app.log(f'User: {self._user.name} logged out.')
         self._loggedIn = False
         self._user = None
+        self.redirect(login=False)
+

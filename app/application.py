@@ -6,7 +6,7 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
 from sys import exit
 from core.support.config.config_provider import ConfigProvider
-
+from PyQt5 import QtWebEngineWidgets
 
 class Application(Container):
     def __init__(self, args):
@@ -17,24 +17,42 @@ class Application(Container):
 
     def main_window(self) -> MainWindow:
         self.main = MainWindow(self)
-        toolbar = self.main.addToolBar('Plugins')
-        toolbar.setMovable(False)
-        for action in self.set_toolbar_actions():
-            toolbar.addAction(action)
+        self.toolbar = self.main.addToolBar('Plugins')
+        self.toolbar.setMovable(False)
+        self.add_toolbar_actions(self.get_toolbar_actions())
         return self.main
 
-    def set_toolbar_actions(self):
+    def add_toolbar_actions(self, actions):
+        for action in actions:
+            self.toolbar.addAction(action['action'])
+
+    def get_toolbar_actions(self):
         actions = []
         for plugin in self.get('managers', 'PluginManager').get_all():
             if self.get('managers', 'AuthManager').user() and plugin.name() == 'AuthPlugin':
                 continue
             action = QAction(QIcon(plugin.icon()), f'&{plugin.client_name()}', self.main)
             action.triggered.connect(lambda state, x=plugin: self.connect_action(x))
-            actions.append(action)
+            actions.append({
+                "plugin": plugin.name(),
+                "action": action
+            })
         return actions
+
+    def refresh_actions(self):
+        action = None
+        for i, v in enumerate(self.toolbar.actions()):
+            if i == 0:
+                action = v
+        action.setDisabled(True)
+
+
 
     def connect_action(self, plugin):
         self.get('managers', 'PluginManager').set_central_widget(plugin.widget())
+
+    def refresh(self):
+        self.refresh_actions()
 
     def start(self) -> None:
         if ConfigProvider().development():
@@ -48,8 +66,8 @@ class Application(Container):
         window = self.main_window()
         window.show()
 
-        # Attach statusBar to SimpleLogger
-        self.get('loggers', 'SimpleLogger').attach(self.main.get_status_bar())
+        # Attach all loggers to Status Bar
+        self.attach_loggers_to_status_bar(self.container['loggers'])
 
         self.log(
             f'{ConfigProvider().name()} initialized. Version: {self.version}')
@@ -64,6 +82,8 @@ class Application(Container):
     def set_central_widget(self, widget):
         self.main.setCentralWidget(widget)
 
+    def get_central_widget(self):
+        return self.main.centralWidget()
 
     def parse_args(self, args):
         args = [{'name': arg.split("=")[0], "value": arg.split("=")[1]} for arg in args[1:] if "=" in arg]
@@ -77,3 +97,6 @@ class Application(Container):
             except KeyError:
                 return None
 
+    def attach_loggers_to_status_bar(self, loggers):
+        for logger in loggers:
+            self.get('loggers', logger).attach(self.main.get_status_bar())
