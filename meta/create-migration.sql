@@ -1346,4 +1346,22 @@ BEGIN
 SHOW COLUMNS FROM users;
 END //
 DELIMITER ;
+
+DROP PROCEDURE IF EXISTS `get_all_users`;
+DELIMITER //
+CREATE PROCEDURE `get_all_users`()
+BEGIN
+SELECT * FROM users;
+END //
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS `promote_user`;
+DELIMITER //
+CREATE PROCEDURE `promote_user`(IN id varchar(255))
+BEGIN
+UPDATE users
+SET USER_ROLE = "admin"
+WHERE USER_ID = id;
+END //
+DELIMITER ;
 --
