@@ -36,8 +36,10 @@ class AdminDashboard:
                 self.tableWidget.setItem(tablerow, index, item)
 
             self.promote_btn = QtWidgets.QTableWidgetItem()
-            self.promote_btn.setText("MAKE ADMIN")
-            self.tableWidget.setItem(tablerow, 6, self.promote_btn)
+            role = user[-1]
+            if role == 'user':
+                self.promote_btn.setText("MAKE ADMIN")
+                self.tableWidget.setItem(tablerow, 6, self.promote_btn)
 
             tablerow+=1
 
