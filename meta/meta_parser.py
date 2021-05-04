@@ -10,6 +10,9 @@ class MetaParser:
         if dump:
             self.dump()
 
+    def get_all_tables(self):
+        return self.tables
+
     def table(self, table_name: str):
         for table in self.tables:
             if table['name'] == table_name:
