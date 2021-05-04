@@ -10,7 +10,6 @@ class AdminDashboard:
         self.current_connection = None
         self.current_cursor = None
         self.setup()
-
         self.users = get_users(self)
 
         self.parent = parent
@@ -21,7 +20,7 @@ class AdminDashboard:
 
     def initiate_view(self):
         self.tableWidget = QtWidgets.QTableWidget(self.main)
-        self.tableWidget.setGeometry(QtCore.QRect(160, 85, 731, 291))
+        self.tableWidget.setGeometry(QtCore.QRect(160, 85, 900, 600))
         self.tableWidget.setRowCount(len(self.users))
         self.tableWidget.setColumnCount(7)
         self.tableWidget.setObjectName("tableWidget")
@@ -48,7 +47,10 @@ class AdminDashboard:
         if(item.column() == 6):
             user_id = self.users[item.row()][0]
             promote_user(self, tuple(str(user_id)))
+            self.tableWidget.deleteLater()
             self.users = get_users(self)
+            self.initiate_view()
+            self.tableWidget.show()
 
     def setup(self):
         mysql_info = ConfigProvider().mysql()
@@ -56,5 +58,5 @@ class AdminDashboard:
         use_database(mysql_info["database"], self)
 
     def widget(self):
-        return self.main   
+        return self.main
 

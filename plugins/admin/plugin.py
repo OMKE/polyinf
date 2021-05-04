@@ -16,8 +16,8 @@ class Main(Plugin):
         self.app.log(f'{self.name()} deactivated')
 
     def widget(self, parent=None):
-        widget = AdminDashboard()
-        return widget
+        main = AdminDashboard()
+        return main.widget()
         
     def guard(self) -> str:
         return PluginGuards.AUTH
