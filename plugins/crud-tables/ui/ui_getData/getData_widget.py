@@ -33,11 +33,11 @@ class GetDataWidget(QDialog):
         self.setObjectName("Form")
         self.resize(1200, 900)
         self.comboBox = QComboBox(self)
-        self.comboBox.setGeometry(QRect(30, 20, 141, 31))
+        self.comboBox.setGeometry(QRect(30, 20, 250, 31))
         self.comboBox.setObjectName("comboBox")
         self.comboBox.addItems(self.tables)
         self.getDataBtn = QPushButton(self)
-        self.getDataBtn.setGeometry(QRect(50, 90, 111, 41))
+        self.getDataBtn.setGeometry(QRect(30, 90, 250, 31))
         self.getDataBtn.setObjectName("getDataBtn")
         self.getDataBtn.clicked.connect(self.getTableData)
 

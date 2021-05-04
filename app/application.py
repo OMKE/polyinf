@@ -42,10 +42,11 @@ class Application(Container):
     def refresh_actions(self):
         actions = []
         for i, v in enumerate(self.toolbar.actions()):
-            if i == 0 or i == 1 and self.get('managers', 'AuthManager').user().get_role() == 'user':
+            if i == 1 or i == 2 and self.get('managers', 'AuthManager').user().get_role() == 'user':
                 actions.append(v)
         for action in actions:
             action.setDisabled(True)
+            action.deleteLater()
 
 
 
