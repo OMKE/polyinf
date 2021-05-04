@@ -20,39 +20,32 @@ class AdminDashboard:
 
     def initiate_view(self):
         self.tableWidget = QtWidgets.QTableWidget(self.main)
-        self.tableWidget.setGeometry(QtCore.QRect(160, 85, 900, 600))
+        self.tableWidget.setGeometry(QtCore.QRect(160, 85, 600, 600))
+        labels = ["ID","First Name","Last Name", "Email", "Password", "Role"]
         self.tableWidget.setRowCount(len(self.users))
-        self.tableWidget.setColumnCount(7)
+        self.tableWidget.setColumnCount(len(labels))
         self.tableWidget.setObjectName("tableWidget")
-        self.tableWidget.setHorizontalHeaderLabels(["ID","First Name","Last Name", "Email", "Password", "Role", "Promote"])
-        self.tableWidget.setEditTriggers( QtWidgets.QTableWidget.NoEditTriggers )
+        self.tableWidget.setHorizontalHeaderLabels(labels)
+        self.tableWidget.setEditTriggers(QtWidgets.QTableWidget.NoEditTriggers)
 
-        tablerow=0
+        for i in range(len(self.users)):
+            user = self.users[i]
+            if user[-1] != 'admin':
+                button = QPushButton(self.main)
+                button.setGeometry(QRect(760, 110 + (i * 30), 100, 30))
+                button.setText('Make admin')
+                button.clicked.connect(lambda state, id=user[0], btn=button: self.make_admin(btn, id))
+            for j in range(len(user)):
+                self.tableWidget.setItem(i, j, QTableWidgetItem(str(user[j])))
 
-        for user in self.users:
-            for index, value in enumerate(user):
-                item = QtWidgets.QTableWidgetItem()
-                item.setText(str(value))
-                self.tableWidget.setItem(tablerow, index, item)
 
-            self.promote_btn = QtWidgets.QTableWidgetItem()
-            role = user[-1]
-            if role == 'user':
-                self.promote_btn.setText("MAKE ADMIN")
-                self.tableWidget.setItem(tablerow, 6, self.promote_btn)
-
-            tablerow+=1
-
-        self.tableWidget.clicked.connect(self.make_admin)
-
-    def make_admin(self, item):
-        if(item.column() == 6):
-            user_id = self.users[item.row()][0]
-            promote_user(self, tuple(str(user_id)))
-            self.tableWidget.deleteLater()
-            self.users = get_users(self)
-            self.initiate_view()
-            self.tableWidget.show()
+    def make_admin(self, button: QPushButton, user_id):
+        promote_user(self, tuple(str(user_id)))
+        self.tableWidget.deleteLater()
+        self.users = get_users(self)
+        self.initiate_view()
+        self.tableWidget.show()
+        button.deleteLater()
 
     def setup(self):
         mysql_info = ConfigProvider().mysql()
