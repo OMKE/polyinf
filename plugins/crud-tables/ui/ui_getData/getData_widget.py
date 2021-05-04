@@ -46,7 +46,7 @@ class GetDataWidget(QDialog):
 
     def initTableUI(self):
         self.tableWidget = QTableWidget(self)
-        self.tableWidget.setGeometry(QRect(200, 150, 900, 700))
+        self.tableWidget.setGeometry(QRect(280, 20, 900, 700))
         self.tableWidget.setRowCount(len(self.data[1]))
         self.tableWidget.setColumnCount(len(self.data[0]))
         self.tableWidget.setObjectName("Table data")
