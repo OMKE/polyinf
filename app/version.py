@@ -1,6 +1,6 @@
 
 
-VERSION = (0, 1, 0, 'alpha')
+VERSION = (0, 5, 0, 'alpha')
 
 
 def version(version=VERSION):
