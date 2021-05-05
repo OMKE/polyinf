@@ -2,17 +2,10 @@ from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
 from .ui_getData.getData_widget import GetDataWidget
-from .ui_addTable.addNewTable_widget import AddNewTable
-
 
 def getData():
     getData_widget = GetDataWidget()
     getData_widget.exec_()
-    
-def addTable():
-    addTable_wdiget = AddNewTable()
-    addTable_wdiget.exec_()
-
 
 class MainWidget(QWidget):
     def __init__(self):
@@ -31,13 +24,7 @@ class MainWidget(QWidget):
         self.label = QLabel(self.verticalLayoutWidget)
         self.label.setAlignment(Qt.AlignCenter)
         self.label.setObjectName("label")
-
         self.verticalLayout.addWidget(self.label)
-        self.addNewTableBtn = QPushButton(self.verticalLayoutWidget)
-        self.addNewTableBtn.setObjectName("addNewTableBtn")
-        self.verticalLayout.addWidget(self.addNewTableBtn)
-        self.addNewTableBtn.clicked.connect(addTable)
-
         self.getDataBtn = QPushButton(self.verticalLayoutWidget)
         self.getDataBtn.setObjectName("getDataBtn")
         self.verticalLayout.addWidget(self.getDataBtn)
@@ -51,7 +38,5 @@ class MainWidget(QWidget):
         mainWidget.setWindowTitle(_translate("mainWidget", "Form"))
         self.label.setText(_translate(
             "mainWidget", "Dobrodošli na rad sa bazom"))
-        self.addNewTableBtn.setText(_translate(
-            "mainWidget", "Dodavanje nove tabele"))
         self.getDataBtn.setText(_translate(
             "mainWidget", "Dobavljanje podataka"))
